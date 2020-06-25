@@ -1,0 +1,12 @@
+:root {
+  --color-palette-background1:#050A30;
+  --color-palette-background2:#000C66;
+  --color-palette-foreground:#7EC8E3;
+  --color-palette-highlight:#0000FF;
+}
+
+body{
+  background-color: var(--color-palette-background1);
+  font: 100% Helvetica;
+  color: var(--color-palette-foreground)
+}
