@@ -10,3 +10,9 @@ body{
   font: 100% Helvetica;
   color: var(--color-palette-foreground)
 }
+
+#header{
+    background-color: var(--color-palette-background2);
+    font: 40px;
+    color: var(--color-palette-highlight)
+}
