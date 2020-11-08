@@ -8,11 +8,18 @@
 body{
   background-color: var(--color-palette-background1);
   font: 100% Helvetica;
-  color: var(--color-palette-foreground)
+  color: var(--color-palette-foreground);
 }
 
 #header{
     background-color: var(--color-palette-background2);
     font: 40px;
-    color: var(--color-palette-highlight)
+    color: var(--color-palette-foreground);
+
+    margin: 60 60 60 60;
+    float: right;
+}
+
+#header a, a:visited{
+    color: inherit;
 }
