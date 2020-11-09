@@ -1,25 +1,47 @@
 :root {
-  --color-palette-background1:#050A30;
-  --color-palette-background2:#000C66;
-  --color-palette-foreground:#7EC8E3;
-  --color-palette-highlight:#0000FF;
+  --color-palette-background1:#424242;
+  --color-palette-background2:#212121;
+  --color-palette-foreground:#BBBBBB;
+  --color-palette-highlight:#F0F0F0;
+}
+
+html{
+  height: 100%;
 }
 
 body{
   background-color: var(--color-palette-background1);
   font: 100% Helvetica;
   color: var(--color-palette-foreground);
+  padding: 0;
+  margin: 0;
+  height: 100%;
 }
 
-#header{
+p{
+  margin: 0;
+}
+
+nav{
     background-color: var(--color-palette-background2);
-    font: 40px;
-    color: var(--color-palette-foreground);
-
-    margin: 60 60 60 60;
+    color: var(--color-palette-highlight);
+    padding: 0;
+    margin: 0;
     float: right;
+    height: 100%;
 }
 
-#header a, a:visited{
+nav ul{
+  padding: 0;
+  margin: 10px 20px 10px 20px;
+  list-style-type: none;
+}
+
+nav ul#ExternalLinks{
+  position: absolute;
+  bottom: 0px;
+}
+
+nav a, a:visited{
     color: inherit;
 }
