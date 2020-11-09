@@ -29,17 +29,28 @@ nav{
     margin: 0;
     float: left;
     height: 100%;
+    width: 80px;
+    text-align: center;
 }
 
 nav ul{
-  padding: 0;
-  margin: 10px 10px 10px 10px;
+  position: absolute;
+  width: inherit;
+  margin: 0;
+  padding: 5px 0 5px 0;
   list-style-type: none;
 }
 
+nav ul#InternalLinks{
+  top: 0px;
+}
+
 nav ul#ExternalLinks{
-  position: absolute;
   bottom: 0px;
+}
+
+nav li{
+  padding: 5px;
 }
 
 nav a, a:visited{
