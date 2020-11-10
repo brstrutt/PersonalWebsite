@@ -1,8 +1,8 @@
 :root {
-  --color-palette-background1:#004242;
-  --color-palette-background2:#002121;
-  --color-palette-foreground:#00BBBB;
-  --color-palette-highlight:#00F0F0;
+  --color-palette-background1:#214242;
+  --color-palette-background2:#102121;
+  --color-palette-foreground:#55BBBB;
+  --color-palette-highlight:#70F0F0;
 }
 
 html{
