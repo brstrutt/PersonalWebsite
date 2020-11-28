@@ -8,7 +8,10 @@
   <body>
     <?php include("./NavBar.html"); ?>
     <?php
-      echo "<p>" . $_SERVER['HTTP_HOST'] . "</p>";
+      if($_SERVER['HTTP_HOST'] == 'dev.benstrutt.space')
+      {
+        echo "<p>TESTING BLALALALALA</p>";
+      }
     ?>
     <p>This was a terrible idea I don't even know what an internet IS.</p>
     <p>Only a FOOL would try to build a website from scratch with no webdev experience or sense of taste...</p>
