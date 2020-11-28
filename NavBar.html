@@ -17,5 +17,11 @@
           <img src="/icons/LI-In-Bug-Modified.png" title="LinkedIn" alt="LinkedIn Logo(Slightly Modified)" width="32px" height="32px"/>
       </a>
     </li>
+    <?php
+      if($_SERVER['HTTP_HOST'] == 'dev.benstrutt.space')
+      {
+        echo "<li><p>TEST SITE</p></li>";
+      }
+    ?>
   </ul>
 </nav>
