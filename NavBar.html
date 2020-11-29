@@ -18,14 +18,13 @@
       }
 
       // Run the query
-      $sql = "SELECT Name FROM Tags WHERE Category == 1";
+      $sql = "SELECT Name FROM Tags";
       $query_result = $db_connection->query($sql);
 
       // Close the database connection
       mysqli_close($db_connection);
 
       // Print the query results
-      echo "<p>Database Smush:</p>";
       if ($query_result->num_rows > 0)
       {
         // output data of each row
