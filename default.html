@@ -11,10 +11,12 @@
     <p>Only a FOOL would try to build a website from scratch with no webdev experience or sense of taste...</p>
     <p>On an unrelated note if you want to hire a fool I'm afraid I'm not available right now.</p>>
     <?php
-      echo "<p>" . $_SERVER['DOCUMENT_ROOT'] . "</p>";
+      $domainRoot = $_SERVER['DOCUMENT_ROOT'];
+      $overallRoot = substr($domainRoot, 0, strpos($domainRoot, "benstrutt.space"));
+      echo "<p>" . $overallRoot . "</p>";
 
       // Load the database info
-      $db_params = parse_ini_file( "/domains/benstrutt.space/private/database_credentials.ini", false );
+      $db_params = parse_ini_file( "/home/u296099994/domains/benstrutt.space/private/database_credentials.ini", false );
 
       $servername = $db_params['host'];
       echo "<p>" . $servername . "</p>";
