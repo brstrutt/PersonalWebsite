@@ -11,7 +11,7 @@
     <p>Only a FOOL would try to build a website from scratch with no webdev experience or sense of taste...</p>
     <p>On an unrelated note if you want to hire a fool I'm afraid I'm not available right now.</p>>
     <?php
-      echo "<p>" . $_SERVER['SERVER_NAME'] . "</p>";
+      echo "<p>" . $_SERVER['DOCUMENT_ROOT'] . "</p>";
 
       // Load the database info
       $db_params = parse_ini_file( "/domains/benstrutt.space/private/database_credentials.ini", false );
