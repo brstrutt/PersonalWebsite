@@ -11,8 +11,10 @@
     <p>Only a FOOL would try to build a website from scratch with no webdev experience or sense of taste...</p>
     <p>On an unrelated note if you want to hire a fool I'm afraid I'm not available right now.</p>>
     <?php
+      echo "<p>" . $_SERVER['DOCUMENT_ROOT'] . "</p>";
+
       // Load the database info
-      $db_params = parse_ini_file( "./database_credentials.ini", false );
+      $db_params = parse_ini_file( "../../private/database_credentials.ini", false );
 
       $servername = $db_params['host'];
       $dbname = $db_params['dbname'];
