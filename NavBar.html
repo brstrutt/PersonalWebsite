@@ -23,6 +23,17 @@
 
       // Close the database connection
       mysqli_close($db_connection);
+
+      // Print the query results
+      if ($query_result->num_rows > 0)
+      {
+        // output data of each row
+        while($row = $query_result->fetch_assoc())
+        {
+          $tagName = $row["Name"];
+          echo "<li><a href="/Page1.html">HMMM</a></li>";
+        }
+      }
     ?>
     <li><a href="/Maps/">Maps</a></li>
   </ul>
