@@ -19,22 +19,22 @@
       // Load the database info
       $db_params = parse_ini_file( $privateDirectory . "database_credentials.ini", false );
 
-      $servername = $db_params['host'];
-      $dbname = $db_params['dbname'];
-      $username = $db_params['user'];
-      $password = $db_params['password'];
-
-      $db_connection = new mysqli($servername, $username, $password, $dbname);
+      // Connect to the database
+      $db_connection = mysqli_connect($db_params['host'], $db_params['user'], $db_params['password'], $db_params['dbname']);
       if ($db_connection->connect_error)
       {
         die("Connection failed: " . $db_connection->connect_error);
       }
 
+      // Run the query
       $sql = "SELECT * FROM Tags";
       $query_result = $db_connection->query($sql);
 
-      echo "<p>Database Smush:</p>";
+      // Close the database connection
+      mysqli_close($db_connection);
 
+      // Print the query results
+      echo "<p>Database Smush:</p>";
       if ($query_result->num_rows > 0)
       {
         // output data of each row
