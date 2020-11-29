@@ -1,9 +1,41 @@
 <nav>
   <ul id="InternalLinks">
     <li><a href="/">Home</a></li>
-    <li><a href="/Page1.html">Projects</a></li>
-    <li><a href="/Page2.html">Wrestling</a></li>
-    <li><a href="/Page3.html">NerdShit</a></li>
+    <?php
+      $domainRoot = $_SERVER['DOCUMENT_ROOT'];
+      $domainName = "benstrutt.space";
+      $overallRoot = substr($domainRoot, 0, strpos($domainRoot, $domainName));
+      $privateDirectory = $overallRoot . $domainName . "/private/";
+
+      // Load the database info
+      $db_params = parse_ini_file( $privateDirectory . "database_credentials.ini", false );
+
+      // Connect to the database
+      $db_connection = mysqli_connect($db_params['host'], $db_params['user'], $db_params['password'], $db_params['dbname']);
+      if ($db_connection->connect_error)
+      {
+        die("Connection failed: " . $db_connection->connect_error);
+      }
+
+      // Run the query
+      $sql = "SELECT Name FROM Tags WHERE Category == 1";
+      $query_result = $db_connection->query($sql);
+
+      // Close the database connection
+      mysqli_close($db_connection);
+
+      // Print the query results
+      echo "<p>Database Smush:</p>";
+      if ($query_result->num_rows > 0)
+      {
+        // output data of each row
+        while($row = $query_result->fetch_assoc())
+        {
+          $tagName = $row["Name"];
+          echo "<li><a href="/Page1.html">" . $tagName . "</a></li>";
+        }
+      }
+    ?>
     <li><a href="/Maps/">Maps</a></li>
   </ul>
   <ul id="ExternalLinks">

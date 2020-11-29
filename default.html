@@ -9,40 +9,6 @@
     <?php include("./NavBar.html"); ?>
     <p>This was a terrible idea I don't even know what an internet IS.</p>
     <p>Only a FOOL would try to build a website from scratch with no webdev experience or sense of taste...</p>
-    <p>On an unrelated note if you want to hire a fool I'm afraid I'm not available right now.</p>
-    <?php
-      $domainRoot = $_SERVER['DOCUMENT_ROOT'];
-      $domainName = "benstrutt.space";
-      $overallRoot = substr($domainRoot, 0, strpos($domainRoot, $domainName));
-      $privateDirectory = $overallRoot . $domainName . "/private/";
-
-      // Load the database info
-      $db_params = parse_ini_file( $privateDirectory . "database_credentials.ini", false );
-
-      // Connect to the database
-      $db_connection = mysqli_connect($db_params['host'], $db_params['user'], $db_params['password'], $db_params['dbname']);
-      if ($db_connection->connect_error)
-      {
-        die("Connection failed: " . $db_connection->connect_error);
-      }
-
-      // Run the query
-      $sql = "SELECT * FROM Tags";
-      $query_result = $db_connection->query($sql);
-
-      // Close the database connection
-      mysqli_close($db_connection);
-
-      // Print the query results
-      echo "<p>Database Smush:</p>";
-      if ($query_result->num_rows > 0)
-      {
-        // output data of each row
-        while($row = $query_result->fetch_assoc())
-        {
-          echo "id: " . $row["id"]. " - Name: " . $row["Name"] . "<br>";
-        }
-      }
-    ?>
+    <p>On an unrelated note if you want to hire a fool I'm afraid I'm not available right now.</p>    
   </body>
 </html>
