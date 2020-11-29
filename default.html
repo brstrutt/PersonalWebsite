@@ -12,11 +12,12 @@
     <p>On an unrelated note if you want to hire a fool I'm afraid I'm not available right now.</p>>
     <?php
       $domainRoot = $_SERVER['DOCUMENT_ROOT'];
-      $overallRoot = substr($domainRoot, 0, strpos($domainRoot, "benstrutt.space"));
-      echo "<p>" . $overallRoot . "</p>";
+      $domainName = "benstrutt.space";
+      $overallRoot = substr($domainRoot, 0, strpos($domainRoot, $domainName));
+      $privateDirectory = $overallRoot . $domainName . "/private/";
 
       // Load the database info
-      $db_params = parse_ini_file( "/home/u296099994/domains/benstrutt.space/private/database_credentials.ini", false );
+      $db_params = parse_ini_file( $privateDirectory . "database_credentials.ini", false );
 
       $servername = $db_params['host'];
       echo "<p>" . $servername . "</p>";
