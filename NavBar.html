@@ -18,7 +18,7 @@
       }
 
       // Run the query
-      $sql = "SELECT * FROM Tags";
+      $sql = "SELECT * FROM Tags WHERE Category == 1";
       $query_result = $db_connection->query($sql);
 
       // Close the database connection
@@ -31,7 +31,7 @@
         while($row = $query_result->fetch_assoc())
         {
           $tagName = $row["Name"];
-          echo "<li><a href=\"/Page1.html\">HMMM</a></li>";
+          echo "<li><a href=\"/Page1.html\">$tagName</a></li>";
         }
       }
     ?>
