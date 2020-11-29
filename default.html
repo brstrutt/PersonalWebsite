@@ -14,7 +14,7 @@
       echo "<p>" . $_SERVER['SERVER_NAME'] . "</p>";
 
       // Load the database info
-      $db_params = parse_ini_file( "../../private/database_credentials.ini", false );
+      $db_params = parse_ini_file( "/domains/benstrutt.space/private/database_credentials.ini", false );
 
       $servername = $db_params['host'];
       echo "<p>" . $servername . "</p>";
