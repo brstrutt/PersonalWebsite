@@ -1,14 +1,9 @@
 This file is to hold snippets of SQL that were used to create the database and it's many friendly tables.
 
 /// SQL used to create the various tables
-CREATE TABLE `u296099994_MainDB`.`Posts` ( `ID` INT NOT NULL , `Name` TEXT NOT NULL , `CreationDate` DATE NOT NULL DEFAULT CURRENT_TIMESTAMP , PRIMARY KEY (`ID`)) ENGINE = InnoDB;
-ALTER TABLE `Posts` CHANGE `ID` `ID` INT(11) NOT NULL AUTO_INCREMENT;
-
-CREATE TABLE `u296099994_MainDB`.`Tags` ( `ID` INT NOT NULL , `Name` TEXT NOT NULL , `IsCategory` BOOLEAN NOT NULL , PRIMARY KEY (`ID`)) ENGINE = InnoDB;
-ALTER TABLE `Tags` CHANGE `ID` `ID` INT(11) NOT NULL AUTO_INCREMENT;
-
-CREATE TABLE `u296099994_MainDB`.`PostTags` ( `ID` INT NOT NULL AUTO_INCREMENT , `PostID` INT NOT NULL , `TagID` INT NOT NULL , PRIMARY KEY (`ID`)) ENGINE = InnoDB;
-ALTER TABLE `u296099994_MainDB`.`PostTags` ADD UNIQUE `ID` (`PostID`, `TagID`);
+CREATE TABLE `u296099994_TestDB`.`Posts` ( `ID` INT NOT NULL AUTO_INCREMENT , `Name` TEXT NOT NULL , `CreationDate` DATE NOT NULL DEFAULT CURRENT_TIMESTAMP , PRIMARY KEY (`ID`)) ENGINE = InnoDB;
+CREATE TABLE `u296099994_TestDB`.`Tags` ( `ID` INT NOT NULL AUTO_INCREMENT , `Name` TEXT NOT NULL , `IsCategory` BOOLEAN NOT NULL , PRIMARY KEY (`ID`)) ENGINE = InnoDB;
+CREATE TABLE `u296099994_TestDB`.`PostTags` ( `ID` INT NOT NULL AUTO_INCREMENT , `PostID` INT NOT NULL , `TagID` INT NOT NULL , PRIMARY KEY (`ID`), UNIQUE (`PostID`, `TagID`)) ENGINE = InnoDB;
 
 /// Syntax for Finding all posts name from a tag name
 SELECT `Posts`.Name FROM ((`PostTags` INNER JOIN `Posts` ON `Posts`.`ID` = `PostTags`.`PostID`) INNER JOIN `Tags` ON `Tags`.`ID` = `PostTags`.`TagID`) WHERE `Tags`.`Name` LIKE 'DummyTag'
