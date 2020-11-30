@@ -11,31 +11,30 @@
       $db_params = parse_ini_file( $privateDirectory . "database_credentials.ini", false );
 
       // Connect to the database
-      $db_connection = mysqli_connect($db_params['host'], $db_params['user'], $db_params['password'], $db_params['dbname']);
+      $db_connection = new mysqli($db_params['host'], $db_params['user'], $db_params['password'], $db_params['dbname']);
       if ($db_connection->connect_error)
       {
         echo "<p>Connection failed: " . $db_connection->connect_error . "</p>";
       }
-      else
+
+      // Run the query
+      $sql = "SELECT * FROM Tags WHERE IsCategory = 1";
+      //$query_result = $db_connection->query($sql);
+
+      // Close the database connection
+      /*mysqli_close($db_connection);
+
+      // Print the query results
+      if ($query_result->num_rows > 0)
       {
-        // Run the query
-        $sql = "SELECT * FROM Tags WHERE IsCategory = 1";
-        //$query_result = $db_connection->query($sql);
-
-        // Close the database connection
-        /*mysqli_close($db_connection);
-
-        // Print the query results
-        if ($query_result->num_rows > 0)
+        // output data of each row
+        while($row = $query_result->fetch_assoc())
         {
-          // output data of each row
-          while($row = $query_result->fetch_assoc())
-          {
-            $tagName = $row["Name"];
-            echo "<li><a href=\"/Page1.html\">$tagName</a></li>";
-          }
-        }*/
-      }
+          $tagName = $row["Name"];
+          echo "<li><a href=\"/Page1.html\">$tagName</a></li>";
+        }
+      }*/
+
     ?>
     <li><a href="/TagCloud.html">Tags</a></li>
   </ul>
