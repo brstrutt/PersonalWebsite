@@ -12,7 +12,7 @@
 
       // Connect to the database
       $db_connection = mysqli_connect($db_params['host'], $db_params['user'], $db_params['password'], $db_params['dbname']);
-      /*if ($db_connection->connect_error)
+      if ($db_connection->connect_error)
       {
         die("Connection failed: " . $db_connection->connect_error);
       }
@@ -25,7 +25,7 @@
       mysqli_close($db_connection);
 
       // Print the query results
-      if ($query_result->num_rows > 0)
+      /*if ($query_result->num_rows > 0)
       {
         // output data of each row
         while($row = $query_result->fetch_assoc())
