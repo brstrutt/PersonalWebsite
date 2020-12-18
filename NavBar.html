@@ -2,7 +2,7 @@
   <ul id="InternalLinks">
     <li><a href="/">Home</a></li>
     <?php
-      include "./DatabaseFunctions.php";
+      include($_SERVER['DOCUMENT_ROOT'] . "/DatabaseFunctions.php");
     	$queryResults = BS_QueryDatabase("SELECT * FROM Tags WHERE IsCategory = 1");
 
       // Print the Category names extracted from the database query
@@ -26,6 +26,7 @@
       </a>
     </li>
     <?php
+      // Put up a small banner at the bottom of the nav bar to remind me if I'm looking at Dev or Prod. hehe. prodprod...prod.
       if($_SERVER['HTTP_HOST'] == 'dev.benstrutt.space')
       {
         echo "<li><p>TEST SITE</p></li>";

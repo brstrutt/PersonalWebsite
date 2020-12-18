@@ -7,6 +7,17 @@
   </head>
   <body>
     <?php include($_SERVER['DOCUMENT_ROOT'] . "/NavBar.html"); ?>
+    <?php
+      include($_SERVER['DOCUMENT_ROOT'] . "/DatabaseFunctions.php");
+    	$queryResults = BS_QueryDatabase("SELECT * FROM Tags");
+
+      // Print the Category names extracted from the database query
+      while($row = $queryResults->fetch_assoc())
+      {
+        $tagName = $row["Name"];
+        echo "<li><a href=\"/TagSearch.html\">$tagName</a></li>";
+      }
+    ?>
     <p>TODO: Implement a Tag Cloud</p>
     <li><a href="/posts/Yharnam/">Yharnam</a></li>
   </body>
