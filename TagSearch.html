@@ -7,6 +7,10 @@
   </head>
   <body>
     <?php include_once($_SERVER['DOCUMENT_ROOT'] . "/NavBar.html"); ?>
+    <?php
+      $searchString = $_GET['searchString'];
+      echo "<p>Tag Search Page searching for: $searchString</p>";
+    ?>
     <p>Template Page</p>
   </body>
 </html>
