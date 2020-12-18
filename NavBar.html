@@ -2,7 +2,7 @@
   <ul id="InternalLinks">
     <li><a href="/">Home</a></li>
     <?php
-      include($_SERVER['DOCUMENT_ROOT'] . "/DatabaseFunctions.php");
+      include_once($_SERVER['DOCUMENT_ROOT'] . "/DatabaseFunctions.php");
     	$queryResults = BS_QueryDatabase("SELECT * FROM Tags WHERE IsCategory = 1");
 
       // Print the Category names extracted from the database query
