@@ -10,6 +10,7 @@
     <?php
       $searchString = $_GET['searchString'];
       echo "<p>Tag Search Page searching for: $searchString</p>";
+      //TODO: SANITISE THE DAMN SEARCH STRING! People could just bung spooky stuff into it and directly affect sql queries that way. big nono.
     ?>
     <p>Template Page</p>
   </body>
