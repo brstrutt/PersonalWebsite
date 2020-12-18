@@ -2,14 +2,8 @@
   <ul id="InternalLinks">
     <li><a href="/">Home</a></li>
     <?php
-      // Locate the private directory on the webhost
-      $publicDirName = "public_html";
-      $privateDirName = "private";
-      $domainRoot = $_SERVER['DOCUMENT_ROOT'];
-      $privateDirectory = str_replace($publicDirName, $privateDirName, $domainRoot);
-
-      // Load the database info
-      $db_params = parse_ini_file( $privateDirectory . "/database_credentials.ini", false );
+      include "./DatabaseFunctions.php";
+      $db_params = BS_GetDatabaseConfig();
 
       // Connect to the database
       $db_connection = new mysqli($db_params['host'], $db_params['user'], $db_params['password'], $db_params['dbname']);
