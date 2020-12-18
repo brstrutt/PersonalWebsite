@@ -3,21 +3,7 @@
     <li><a href="/">Home</a></li>
     <?php
       include "./DatabaseFunctions.php";
-      $db_params = BS_GetDatabaseConfig();
-
-      // Connect to the database
-      $db_connection = new mysqli($db_params['host'], $db_params['user'], $db_params['password'], $db_params['dbname']);
-      if ($db_connection->connect_error)
-      {
-        echo "<p>Connection failed: " . $db_connection->connect_error . "</p>";
-      }
-
-      // Run the query
-      $sql = "SELECT * FROM Tags WHERE IsCategory = 1";
-      $query_result = $db_connection->query($sql);
-
-      // Close the database connection
-      $db_connection->close();
+    	$queryResults = BS_QueryDatabase("SELECT * FROM Tags WHERE IsCategory = 1");
 
       // Print the query results
       if ($query_result->num_rows > 0)
@@ -26,7 +12,7 @@
         while($row = $query_result->fetch_assoc())
         {
           $tagName = $row["Name"];
-          echo "<li><a href=\"/Page1.html\">$tagName</a></li>";
+          echo "<li><a href=\"/TagSearch.html\">$tagName</a></li>";
         }
       }
     ?>
