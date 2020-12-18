@@ -3,11 +3,11 @@
     <li><a href="/">Home</a></li>
     <?php
       // Locate the private directory on the webhost
+      $publicDirName = "public_html";
+      $privateDirName = "private";
       $domainRoot = $_SERVER['DOCUMENT_ROOT'];
-      echo "<p>TESTING</p><p>" . $domainRoot . "</p>";
-      $domainName = "benstrutt.space";
-      $overallRoot = substr($domainRoot, 0, strpos($domainRoot, $domainName));
-      $privateDirectory = $overallRoot . $domainName . "/private/";
+      $privateDirectory = str_replace($publicDirName, $privateDirName, $domainRoot);
+      echo "<p>TESTING</p><p>" . $domainRoot . "</p><p>" . $privateDirectory . "</p>";
 
       // Load the database info
       $db_params = parse_ini_file( $privateDirectory . "database_credentials.ini", false );
