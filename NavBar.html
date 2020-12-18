@@ -4,7 +4,7 @@
     <?php
       // Locate the private directory on the webhost
       $domainRoot = $_SERVER['DOCUMENT_ROOT'];
-      echo "<p>TESTING</p><p>" . $domainRoot . "</p>"
+      echo "<p>TESTING</p><p>" . $domainRoot . "</p>";
       $domainName = "benstrutt.space";
       $overallRoot = substr($domainRoot, 0, strpos($domainRoot, $domainName));
       $privateDirectory = $overallRoot . $domainName . "/private/";
