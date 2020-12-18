@@ -7,7 +7,7 @@ function BS_QueryDatabase($query)
 	$dbConnection = BS_ConnectToDatabase($db_params);
 	$queryResults = BS_ExecuteDatabaseQuery($dbConnection, $query);
 	$db_connection->close();
-	return $query;
+	return $queryResults;
 }
 
 // Return the directory path for this subdomains private directory
