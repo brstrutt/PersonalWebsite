@@ -6,10 +6,10 @@
     	$queryResults = BS_QueryDatabase("SELECT * FROM Tags WHERE IsCategory = 1");
 
       // Print the query results
-      if ($query_result->num_rows > 0)
+      if ($queryResults->num_rows > 0)
       {
         // output data of each row
-        while($row = $query_result->fetch_assoc())
+        while($row = $queryResults->fetch_assoc())
         {
           $tagName = $row["Name"];
           echo "<li><a href=\"/TagSearch.html\">$tagName</a></li>";
