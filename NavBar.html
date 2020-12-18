@@ -5,15 +5,15 @@
       include "./DatabaseFunctions.php";
     	$queryResults = BS_QueryDatabase("SELECT * FROM Tags WHERE IsCategory = 1");
 
+      // output data of each row
+      while($row = $queryResults->fetch_assoc())
+      {
+        $tagName = $row["Name"];
+        echo "<li><a href=\"/TagSearch.html\">$tagName</a></li>";
+      }
       // Print the query results
       if ($queryResults->num_rows > 0)
       {
-        // output data of each row
-        while($row = $queryResults->fetch_assoc())
-        {
-          $tagName = $row["Name"];
-          echo "<li><a href=\"/TagSearch.html\">$tagName</a></li>";
-        }
       }
     ?>
     <li><a href="/TagCloud.html">Tags</a></li>
