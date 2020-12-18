@@ -3,10 +3,10 @@
 function BS_QueryDatabase($query)
 {
 	$privateDir = BS_GetPrivateDirectory();
-	$db_params = BS_LoadDatabaseCredentials($privateDir);
-	$dbConnection = BS_ConnectToDatabase($db_params);
+	$dbParams = BS_LoadDatabaseCredentials($privateDir);
+	$dbConnection = BS_ConnectToDatabase($dbParams);
 	$queryResults = BS_ExecuteDatabaseQuery($dbConnection, $query);
-	$db_connection->close();
+	$dbConnection->close();
 	return $queryResults;
 }
 
