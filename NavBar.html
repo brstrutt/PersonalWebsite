@@ -7,10 +7,9 @@
       $privateDirName = "private";
       $domainRoot = $_SERVER['DOCUMENT_ROOT'];
       $privateDirectory = str_replace($publicDirName, $privateDirName, $domainRoot);
-      echo "<p>TESTING</p><p>" . $domainRoot . "</p><p>" . $privateDirectory . "</p>";
 
       // Load the database info
-      $db_params = parse_ini_file( $privateDirectory . "database_credentials.ini", false );
+      $db_params = parse_ini_file( $privateDirectory . "/database_credentials.ini", false );
 
       // Connect to the database
       $db_connection = new mysqli($db_params['host'], $db_params['user'], $db_params['password'], $db_params['dbname']);
