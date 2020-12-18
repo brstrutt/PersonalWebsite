@@ -9,13 +9,13 @@
     <?php include($_SERVER['DOCUMENT_ROOT'] . "/NavBar.html"); ?>
     <?php
       include($_SERVER['DOCUMENT_ROOT'] . "/DatabaseFunctions.php");
-    	$queryResults = BS_QueryDatabase("SELECT * FROM Tags");
+    	$queryResults = BS_QueryDatabase("SELECT * FROM Tags WHERE IsCategory = 1");
 
       // Print the Category names extracted from the database query
       while($row = $queryResults->fetch_assoc())
       {
         $tagName = $row["Name"];
-        echo "<li><a href=\"/TagSearch.html\">$tagName</a></li>";
+        echo "<p><a href=\"/TagSearch.html\">$tagName</a></p>";
       }
     ?>
     <p>TODO: Implement a Tag Cloud</p>
