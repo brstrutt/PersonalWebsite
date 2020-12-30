@@ -81,11 +81,12 @@ function BS_ResetDatabaseToCurrentPosts()
 function BS_WipeDatabaseData()
 {
   // Wipe database data leaving the structure untouched
-	BS_QueryDatabase("SET FOREIGN_KEY_CHECKS = 0");
-  BS_QueryDatabase("TRUNCATE TABLE `Posts`");
-  BS_QueryDatabase("TRUNCATE TABLE `PostTags`");
-  BS_QueryDatabase("TRUNCATE TABLE `Tags`");
-	BS_QueryDatabase("SET FOREIGN_KEY_CHECKS = 1");
+	$ignoreForeignKeys = "SET FOREIGN_KEY_CHECKS = 0;";
+	$wipePosts = "TRUNCATE TABLE `Posts`;";
+	$wipeTags = "TRUNCATE TABLE `Tags`;";
+	$wipeLinks = "TRUNCATE TABLE `PostTags`;";
+
+	BS_QueryDatabase($ignoreForeignKeys . $wipePosts . $wipeTags . $wipeLinks);
 }
 
 function BS_InsertAllPostsToDatabase()
