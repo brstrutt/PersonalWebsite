@@ -75,7 +75,7 @@ function BS_ExecuteDatabaseQueryParameterised($dbConnection, $query, $parameters
 // Delete all data in the current database, then insert each post and its tags
 function BS_ResetDatabaseToCurrentPosts()
 {
-	BS_WipeDatabaseData();
+	//BS_WipeDatabaseData();
 	BS_InsertAllPostsToDatabase();
 }
 
