@@ -131,29 +131,23 @@ function BS_InsertPostToDatabase($postsDir, $post)
 	$postData = $insertedPost->fetch_assoc();
 
 	// Insert each Tag that isn't yet inserted
-	echo "<p>Insertig Tags</p>";
+	echo "<p>Inserting Tags</p>";
 	foreach($tags as $tag)
 	{
-		echo "<p>Is it already there?</p>";
 		$existingTag = BS_QueryDatabaseParameterised("SELECT * FROM Tags WHERE Name LIKE ?", [["s", $tag]]);
 		if($existingTag->num_rows < 1)
 		{
-			echo "<p>NO!</p>";
 			$isCategory = 0;
 			if(strcmp($tag, $category[0]) == 0) $isCategory = 1;
-			echo "<p>Insert it!</p>";
 			BS_QueryDatabaseParameterised("INSERT INTO `Tags` (`ID`, `Name`, `IsCategory`) VALUES (NULL, ?, ?)", [["s",$tag],["i",$isCategory]]);
 
 			$existingTag = BS_QueryDatabaseParameterised("SELECT * FROM Tags WHERE Name LIKE ?", [["s", $tag]]);
 		}
 		$tagData = $existingTag->fetch_assoc();
 
-		echo "<p>Now to Link the tag to the post</p>";
 		$postId = $postData["ID"];
 		$tagId = $tagData["ID"];
 		BS_QueryDatabaseParameterised("INSERT INTO `PostTags` (`ID`, `PostId`, `TagId`) VALUES (NULL, ?, ?)", [["i",$postId],["i",$tagId]]);
-
-		echo "<p>Niiiiice</p>";
 	}
 }
 ?>
