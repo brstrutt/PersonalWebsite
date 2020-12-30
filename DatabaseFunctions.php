@@ -75,18 +75,19 @@ function BS_ExecuteDatabaseQueryParameterised($dbConnection, $query, $parameters
 function BS_ResetDatabaseToCurrentPosts()
 {
 	BS_WipeDatabaseData();
-	//BS_InsertAllPostsToDatabase();
+	BS_InsertAllPostsToDatabase();
 }
 
 function BS_WipeDatabaseData()
 {
   // Wipe database data leaving the structure untouched
 	$ignoreForeignKeys = "SET FOREIGN_KEY_CHECKS = 0;";
-	$wipePosts = "TRUNCATE TABLE `Posts`;";
-	$wipeTags = "TRUNCATE TABLE `Tags`;";
-	$wipeLinks = "TRUNCATE TABLE `PostTags`;";
 
-	BS_QueryDatabase("DELETE FROM `Posts`; ALTER TABLE `Posts` AUTO_INCREMENT = 1;");
+	BS_QueryDatabase("DELETE FROM `Posts`");
+	BS_QueryDatabase("ALTER TABLE `Posts` AUTO_INCREMENT = 1");
+	BS_QueryDatabase("DELETE FROM `Tags`");
+	BS_QueryDatabase("ALTER TABLE `Tags` AUTO_INCREMENT = 1");
+	BS_QueryDatabase("TRUNCATE TABLE `PostTags`");
 }
 
 function BS_InsertAllPostsToDatabase()
