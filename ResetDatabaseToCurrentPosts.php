@@ -1,7 +1,7 @@
 <?php
+include_once($_SERVER['DOCUMENT_ROOT'] . "/DatabaseFunctions.php");
 function ResetDatabase()
 {
-  include_once($_SERVER['DOCUMENT_ROOT'] . "/DatabaseFunctions.php");
   // Wipe database data (Leave the structure)
   BS_QueryDatabase("TRUNCATE TABLE `Posts`");
   BS_QueryDatabase("TRUNCATE TABLE `PostTags`");
