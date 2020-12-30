@@ -12,8 +12,8 @@
 
       $searchString = $_GET['searchString'];
 
-      $query = "SELECT `Posts`.Name FROM ((`PostTags` INNER JOIN `Posts` ON `Posts`.`ID` = `PostTags`.`PostID`) INNER JOIN `Tags` ON `Tags`.`ID` = `PostTags`.`TagID`) WHERE `Tags`.`Name` LIKE ?"
-    	$queryResults = BS_QueryDatabaseParameterised($query, $searchString);
+      $query = "SELECT `Posts`.Name FROM ((`PostTags` INNER JOIN `Posts` ON `Posts`.`ID` = `PostTags`.`PostID`) INNER JOIN `Tags` ON `Tags`.`ID` = `PostTags`.`TagID`) WHERE `Tags`.`Name` LIKE 'Maps'";
+    	$queryResults = BS_QueryDatabase($query);
 
       // Print the Category names extracted from the database query
       $numOfResults = 0;
