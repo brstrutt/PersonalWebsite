@@ -74,7 +74,7 @@ function BS_ExecuteDatabaseQueryParameterised($dbConnection, $query, $parameters
 
 function BS_ResetDatabaseToCurrentPosts()
 {
-	BS_WipeDatabaseData();
+	//BS_WipeDatabaseData();
 	BS_InsertAllPostsToDatabase();
 }
 
