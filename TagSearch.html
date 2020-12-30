@@ -12,15 +12,15 @@
 
       $searchString = $_GET['searchString'];
 
-      $query = "SELECT `Posts`.Name FROM ((`PostTags` INNER JOIN `Posts` ON `Posts`.`ID` = `PostTags`.`PostID`) INNER JOIN `Tags` ON `Tags`.`ID` = `PostTags`.`TagID`) WHERE `Tags`.`Name` LIKE 'Maps'";
-    	$queryResults = BS_QueryDatabase($query);
+      $query = "SELECT `Posts`.Name FROM ((`PostTags` INNER JOIN `Posts` ON `Posts`.`ID` = `PostTags`.`PostID`) INNER JOIN `Tags` ON `Tags`.`ID` = `PostTags`.`TagID`) WHERE `Tags`.`Name` LIKE ?";
+    	$queryResults = BS_QueryDatabaseParameterised($query, $searchString);
 
       // Print the Category names extracted from the database query
       $numOfResults = 0;
       while($row = $queryResults->fetch_assoc())
       {
         $postName = $row["Name"];
-        echo "<p><a href=\"/TagSearch.html?searchString=$tagName\">$postName</a></p>";
+        echo "<p><a href=\"/TagSearch.html?searchString=$postName\">$postName</a></p>";
         $numOfResults += 1;
       }
 
