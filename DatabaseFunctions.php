@@ -75,7 +75,7 @@ function BS_ExecuteDatabaseQueryParameterised($dbConnection, $query, $parameters
 // Delete all data in the current database, then insert each post and its tags
 function BS_ResetDatabaseToCurrentPosts()
 {
-	//BS_WipeDatabaseData();
+	BS_WipeDatabaseData();
 	BS_InsertAllPostsToDatabase();
 }
 
@@ -125,7 +125,7 @@ function BS_InsertPostToDatabase($postsDir, $post)
 
 	// Insert the Post into the Database
 	echo "<p>Insertig $post</p>";
-	BS_QueryDatabaseParameterised("INSERT INTO `Posts` (`ID`, `Name`, `CreationDate`) VALUES (NULL, ?, ?)", [["s",$post],["s",$creationUpdateDates[0]]]);
+	BS_QueryDatabase("INSERT INTO `Posts` (`ID`, `Name`, `CreationDate`) VALUES (NULL, $post, $creationUpdateDates[0])");
 
 	$insertedPost = BS_QueryDatabaseParameterised("SELECT * FROM Posts WHERE Name LIKE ?", [["s", $post]]);
 	$postData = $insertedPost->fetch_assoc();
