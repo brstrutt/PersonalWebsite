@@ -12,14 +12,15 @@
 
       $searchString = $_GET['searchString'];
 
-    	$queryResults = BS_QueryDatabaseParameterised("SELECT * FROM Tags WHERE Name=?", $searchString);
+      $query = "SELECT `Posts`.Name FROM ((`PostTags` INNER JOIN `Posts` ON `Posts`.`ID` = `PostTags`.`PostID`) INNER JOIN `Tags` ON `Tags`.`ID` = `PostTags`.`TagID`) WHERE `Tags`.`Name` LIKE ?"
+    	$queryResults = BS_QueryDatabaseParameterised($query, $searchString);
 
       // Print the Category names extracted from the database query
       $numOfResults = 0;
       while($row = $queryResults->fetch_assoc())
       {
-        $tagName = $row["Name"];
-        echo "<p><a href=\"/TagSearch.html?searchString=$tagName\">$tagName</a></p>";
+        $postName = $row;
+        echo "<p><a href=\"/TagSearch.html?searchString=$tagName\">$postName</a></p>";
         $numOfResults += 1;
       }
 
