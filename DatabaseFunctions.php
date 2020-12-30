@@ -98,7 +98,8 @@ function BS_InsertAllPostsToDatabase()
 	$dirs = array_filter(glob($postsDir . '*'), 'is_dir');
 	foreach($dirs as $dir)
 	{
-		echo "<p>$dir</p>";
+		$dirName =  str_replace($postsDir, "", $dir);
+		echo "<p>$dirName</p>";
 	}
 
   BS_QueryDatabase("INSERT INTO `Posts` (`ID`, `Name`, `CreationDate`) VALUES (NULL, 'TESTIG', '2020-12-30')");
