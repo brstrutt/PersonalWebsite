@@ -58,7 +58,7 @@ function BS_ExecuteDatabaseQuery($dbConnection, $query)
 	if($query_result == false)
 	{
     $dbConnection->rollback();
-    throw new Exception("Db Query ($query) Failed: ".$db->error);
+    echo "Db Query ($query) Failed: ".$db->error);
 	}
 	return $query_result;
 }
