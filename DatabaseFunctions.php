@@ -125,7 +125,7 @@ function BS_InsertPostToDatabase($postsDir, $post)
 
 	// Insert the Post into the Database
 	echo "<p>Insertig $post</p>";
-	BS_QueryDatabaseParameterised("INSERT INTO `Posts` (`ID`, `Name`, `CreationDate`) VALUES (NULL, ?, '2020-12-12')", [["s",$post]]);
+	BS_QueryDatabaseParameterised("INSERT INTO `Posts` (`ID`, `Name`, `CreationDate`) VALUES (NULL, ?, ?)", [["s",$post],["s", '2020-12-12']]);
 
 	$insertedPost = BS_QueryDatabaseParameterised("SELECT * FROM Posts WHERE Name LIKE ?", [["s", $post]]);
 	$postData = $insertedPost->fetch_assoc();
