@@ -96,16 +96,51 @@ function BS_InsertAllPostsToDatabase()
   // Grab all post names
 	$postsDir = $_SERVER['DOCUMENT_ROOT'] . "/posts/";
 	$dirs = array_filter(glob($postsDir . '*'), 'is_dir');
+
+	// Add each Post to the Database
 	foreach($dirs as $dir)
 	{
 		$dirName =  str_replace($postsDir, "", $dir);
-		echo "<p>$dirName</p>";
+		echo "<p>Start Add $dirName to Database.</p>";
+		BS_InsertPostToDatabase($postsDir, $dirName);
+		echo "<p>Added $dirName!</p>";
 	}
+}
 
-  BS_QueryDatabase("INSERT INTO `Posts` (`ID`, `Name`, `CreationDate`) VALUES (NULL, 'TESTIG', '2020-12-30')");
-  BS_QueryDatabase("INSERT INTO `Tags` (`ID`, `Name`, `IsCategory`) VALUES (NULL, 'TestCategory', 1)");
-  BS_QueryDatabase("INSERT INTO `Tags` (`ID`, `Name`, `IsCategory`) VALUES (NULL, 'TestTag', 0)");
-  BS_QueryDatabase("INSERT INTO `PostTags` (`ID`, `PostId`, `TagId`) VALUES (NULL, 1, 1)");
-  // For each one add the post then add its tags and other data from the csv
+// Insert a specified post into the database
+// Directory that contains the post must be specified
+// the Post itself is expected to be a directory containing at LEAST a data.csv
+// TODO: Stop Duplication of Posts
+function BS_InsertPostToDatabase($postsDir, $post)
+{
+	echo "<p>Inserting $dirName</p>";
+
+	// Read the csv
+	$postDataFile = fopen($postsDir . $post . "/data.csv", "r");
+	$category = fgetcsv($postDataFile);
+	$tags = fgetcsv($postDataFile);
+	$tags = array_merge($category, $tags);
+	$creationUpdateDates = fgetcsv($postDataFile);
+	fclose($postDataFile);
+
+	// Insert the Post into the Database
+	$insertedPost = BS_QueryDatabaseParameterised("INSERT INTO `Posts` (`ID`, `Name`, `CreationDate`) VALUES (NULL, ?, ?)", [["s",$post],["s",$creationUpdateDates[0]]]);
+	$postData = $insertedPost->fetch_assoc();
+	// Insert each Tag that isn't yet inserted
+	foreach($tags as $tag)
+	{
+		$existingTag = BS_QueryDatabaseParameterised("SELECT * FROM Tags WHERE Name LIKE ?", [["s", $tag]]);
+		if($existingTag->num_rows() < 1)
+		{
+			$isCategory = 0;
+			if(strcmp($tag, $category[0]) == 0) $isCategory = 1;
+			$existingTag = BS_QueryDatabaseParameterised("INSERT INTO `Tags` (`ID`, `Name`, `IsCategory`) VALUES (NULL, ?, ?)", [["s",$tag],["i",$isCategory]]);
+		}
+		$tagData = $existingTag->fetch_assoc();
+
+		$postId = $postData["ID"];
+		$tagId = $tagData["ID"];
+		BS_QueryDatabaseParameterised("INSERT INTO `PostTags` (`ID`, `PostId`, `TagId`) VALUES (NULL, ?, ?)", [["i",$postId],["i",$tagId]]);
+	}
 }
 ?>
