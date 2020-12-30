@@ -11,8 +11,10 @@ function BS_QueryDatabase($query)
 }
 
 // Query the website database using parameterised queries to avoid pesky sql injection
-// Expects $parameters to be an array of arrays, with each sub array being the Type and vaue of that parameter
-// E.G [["s", $name]] would be a single parameter of type "s" with value $name
+// Expects $parameters to be an array with the first arg specifying the
+// param types and the second arg being an array of the parameters
+// E.G ["s", [$name]] would be a single parameter of type "s" with value $name
+// E.G ["si", [$name, $number]] would be two params, one string and one int
 function BS_QueryDatabaseParameterised($query, $parameters)
 {
 	$privateDir = BS_GetPrivateDirectory();
@@ -62,10 +64,7 @@ function BS_ExecuteDatabaseQuery($dbConnection, $query)
 function BS_ExecuteDatabaseQueryParameterised($dbConnection, $query, $parameters)
 {
 	$preparedStatement = $dbConnection->prepare($query);
-	foreach($parameters as $parameter)
-	{
-		$preparedStatement->bind_param($parameter[0], $parameter[1]);
-	}
+	$preparedStatement->bind_param($parameters[0], ...$parameters[1]);
 	$preparedStatement->execute();
 	$query_result = $preparedStatement->get_result();
 	$preparedStatement->close();
@@ -125,7 +124,7 @@ function BS_InsertPostToDatabase($postsDir, $post)
 
 	// Insert the Post into the Database
 	echo "<p>Insertig $post</p>";
-	BS_QueryDatabaseParameterised("INSERT INTO `Posts` (`ID`, `Name`, `CreationDate`) VALUES (NULL, ?, ?)", [["s",$post],["s", '2020-12-12']]);
+	BS_QueryDatabaseParameterised("INSERT INTO `Posts` (`ID`, `Name`, `CreationDate`) VALUES (NULL, ?, ?)", ["ss",[$post, '2020-12-12']]);
 
 	$insertedPost = BS_QueryDatabaseParameterised("SELECT * FROM Posts WHERE Name LIKE ?", [["s", $post]]);
 	$postData = $insertedPost->fetch_assoc();
