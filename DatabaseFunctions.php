@@ -72,17 +72,16 @@ function BS_ExecuteDatabaseQueryParameterised($dbConnection, $query, $parameters
 	return $query_result;
 }
 
+// Delete all data in the current database, then insert each post and its tags
 function BS_ResetDatabaseToCurrentPosts()
 {
 	BS_WipeDatabaseData();
 	BS_InsertAllPostsToDatabase();
 }
 
+// Wipe database data leaving the structure untouched
 function BS_WipeDatabaseData()
 {
-  // Wipe database data leaving the structure untouched
-	$ignoreForeignKeys = "SET FOREIGN_KEY_CHECKS = 0;";
-
 	BS_QueryDatabase("DELETE FROM `Posts`");
 	BS_QueryDatabase("ALTER TABLE `Posts` AUTO_INCREMENT = 1");
 	BS_QueryDatabase("DELETE FROM `Tags`");
@@ -90,9 +89,18 @@ function BS_WipeDatabaseData()
 	BS_QueryDatabase("TRUNCATE TABLE `PostTags`");
 }
 
+// Scan through the folder structure to find all Posts
+// then insert said posts and their tags into the database
 function BS_InsertAllPostsToDatabase()
 {
-  // Grab all Post Folders
+  // Grab all post names
+	$postsDir = $_SERVER['DOCUMENT_ROOT'] . "/posts/";
+	$dirs = array_filter(glob($postsDir . '*'), 'is_dir');
+	foreach($dirs as $dir)
+	{
+		echo "<p>$dir</p>";
+	}
+
   BS_QueryDatabase("INSERT INTO `Posts` (`ID`, `Name`, `CreationDate`) VALUES (NULL, 'TESTIG', '2020-12-30')");
   BS_QueryDatabase("INSERT INTO `Tags` (`ID`, `Name`, `IsCategory`) VALUES (NULL, 'TestCategory', 1)");
   BS_QueryDatabase("INSERT INTO `Tags` (`ID`, `Name`, `IsCategory`) VALUES (NULL, 'TestTag', 0)");
