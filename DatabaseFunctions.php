@@ -113,7 +113,7 @@ function BS_InsertAllPostsToDatabase()
 // TODO: Stop Duplication of Posts
 function BS_InsertPostToDatabase($postsDir, $post)
 {
-	echo "<p>Inserting $dirName</p>";
+	echo "<p>Reading $post Data</p>";
 
 	// Read the csv
 	$postDataFile = fopen($postsDir . $post . "/data.csv", "r");
@@ -124,9 +124,12 @@ function BS_InsertPostToDatabase($postsDir, $post)
 	fclose($postDataFile);
 
 	// Insert the Post into the Database
+	echo "<p>Insertig $post</p>";
 	$insertedPost = BS_QueryDatabaseParameterised("INSERT INTO `Posts` (`ID`, `Name`, `CreationDate`) VALUES (NULL, ?, ?)", [["s",$post],["s",$creationUpdateDates[0]]]);
 	$postData = $insertedPost->fetch_assoc();
+
 	// Insert each Tag that isn't yet inserted
+	echo "<p>Insertig Tags</p>";
 	foreach($tags as $tag)
 	{
 		$existingTag = BS_QueryDatabaseParameterised("SELECT * FROM Tags WHERE Name LIKE ?", [["s", $tag]]);
