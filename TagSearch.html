@@ -19,7 +19,7 @@
       $numOfResults = 0;
       while($row = $queryResults->fetch_assoc())
       {
-        $postName = $row;
+        $postName = $row["Name"];
         echo "<p><a href=\"/TagSearch.html?searchString=$tagName\">$postName</a></p>";
         $numOfResults += 1;
       }
