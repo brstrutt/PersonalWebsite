@@ -55,6 +55,11 @@ function BS_ConnectToDatabase($db_params)
 function BS_ExecuteDatabaseQuery($dbConnection, $query)
 {
 	$query_result = $dbConnection->query($query);
+	if($query_result == false)
+	{
+    $dbConnection->rollback();
+    throw new Exception("Db Query ($query) Failed: ".$db->error);
+	}
 	return $query_result;
 }
 
@@ -75,7 +80,7 @@ function BS_ExecuteDatabaseQueryParameterised($dbConnection, $query, $parameters
 function BS_ResetDatabaseToCurrentPosts()
 {
 	BS_WipeDatabaseData();
-	BS_InsertAllPostsToDatabase();
+	//BS_InsertAllPostsToDatabase();
 }
 
 function BS_WipeDatabaseData()
@@ -86,7 +91,7 @@ function BS_WipeDatabaseData()
 	$wipeTags = "TRUNCATE TABLE `Tags`;";
 	$wipeLinks = "TRUNCATE TABLE `PostTags`;";
 
-	BS_QueryDatabase($ignoreForeignKeys . $wipePosts . $wipeTags . $wipeLinks);
+	BS_QueryDatabase("SET FOREIGN_KEY_CHECKS = 0; TRUNCATE TABLE `Posts`;");
 }
 
 function BS_InsertAllPostsToDatabase()
