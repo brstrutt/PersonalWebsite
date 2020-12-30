@@ -126,7 +126,7 @@ function BS_InsertPostToDatabase($postsDir, $post)
 	echo "<p>Insertig $post</p>";
 	BS_QueryDatabaseParameterised("INSERT INTO `Posts` (`ID`, `Name`, `CreationDate`) VALUES (NULL, ?, ?)", ["ss",[$post, '2020-12-12']]);
 
-	$insertedPost = BS_QueryDatabaseParameterised("SELECT * FROM Posts WHERE Name LIKE ?", [["s", $post]]);
+	$insertedPost = BS_QueryDatabaseParameterised("SELECT * FROM Posts WHERE Name LIKE ?", ["s", [$post]]);
 	$postData = $insertedPost->fetch_assoc();
 
 	// Insert each Tag that isn't yet inserted
