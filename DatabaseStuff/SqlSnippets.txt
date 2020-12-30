@@ -7,3 +7,6 @@ CREATE TABLE `u296099994_TestDB`.`PostTags` ( `ID` INT NOT NULL AUTO_INCREMENT ,
 
 /// Syntax for Finding all posts name from a tag name
 SELECT `Posts`.Name FROM ((`PostTags` INNER JOIN `Posts` ON `Posts`.`ID` = `PostTags`.`PostID`) INNER JOIN `Tags` ON `Tags`.`ID` = `PostTags`.`TagID`) WHERE `Tags`.`Name` LIKE 'DummyTag'
+
+/// Insert a dummy post into the Posts TABLE
+INSERT INTO `Posts` (`ID`, `Name`, `CreationDate`) VALUES (NULL, 'TESTIG', '2020-12-30')
