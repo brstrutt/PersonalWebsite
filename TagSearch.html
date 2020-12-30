@@ -13,7 +13,7 @@
       $searchString = $_GET['searchString'];
       echo "<p>Tag Search Page searching for: $searchString</p>";
 
-    	$queryResults = BS_QueryDatabase("SELECT * FROM Tags WHERE Name=`Maps`");
+    	$queryResults = BS_QueryDatabase("SELECT * FROM Tags WHERE Tags.Name=Maps");
 
       // Print the Category names extracted from the database query
       while($row = $queryResults->fetch_assoc())
