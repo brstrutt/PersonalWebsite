@@ -11,22 +11,17 @@
     <p>Only a FOOL would try to build a website from scratch with no webdev experience or sense of taste...</p>
     <p>On an unrelated note if you want to hire a fool I'm afraid I'm not available right now.</p>
 
-    
     <form method="post">
-      <input type="submit" name="test" id="test" value="RUN" /><br/>
+      <input type="submit" name="ResetDb" id="ResetDb" value="Reset Database" /><br/>
     </form>
 
     <?php
-
-    function testfun()
+    if(array_key_exists('ResetDb',$_POST))
     {
-       echo "Your test function on button click is working";
+      echo "Resetting Database...";
+      include_once($_SERVER['DOCUMENT_ROOT'] . "/ResetDatabaseToCurrentPosts.php"
+      echo "Database Reset";
     }
-
-    if(array_key_exists('test',$_POST)){
-       testfun();
-    }
-
     ?>
   </body>
 </html>
