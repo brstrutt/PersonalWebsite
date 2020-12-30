@@ -136,7 +136,7 @@ function BS_InsertPostToDatabase($postsDir, $post)
 	{
 		echo "<p>Is it already there?</p>";
 		$existingTag = BS_QueryDatabaseParameterised("SELECT * FROM Tags WHERE Name LIKE ?", [["s", $tag]]);
-		if($existingTag->num_rows() < 1)
+		if($existingTag->num_rows < 1)
 		{
 			echo "<p>NO!</p>";
 			$isCategory = 0;
