@@ -70,10 +70,8 @@ function BS_ExecuteDatabaseQueryParameterised($dbConnection, $query, $parameter)
 	echo "<p>1.2.3</p>";
 	$preparedStatement->execute();
 	echo "<p>1.2.4</p>";
-	$preparedStatement->bind_result($query_result);
+	$query_result = $preparedStatement->get_result();
 	echo "<p>1.2.5</p>";
-	$preparedStatement->fetch();
-	echo "<p>1.2.6</p>";
 	$preparedStatement->close();
 	echo "<p>1.2.7</p>";
 	return $query_result;
