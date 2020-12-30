@@ -20,9 +20,11 @@
       // Print the Category names extracted from the database query
       while($row = $queryResults->fetch_assoc())
       {
+        echo "<p>3</p>";
         $tagName = $row["Name"];
         echo "<p><a href=\"/TagSearch.html?searchString=$tagName\">$tagName</a></p>";
       }
+      echo "<p>4</p>";
 
     ?>
     <p>Template Page</p>
