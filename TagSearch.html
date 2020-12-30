@@ -11,16 +11,20 @@
       include_once($_SERVER['DOCUMENT_ROOT'] . "/DatabaseFunctions.php");
 
       $searchString = $_GET['searchString'];
-      echo "<p>Tag Search Page searching for: $searchString</p>";
 
     	$queryResults = BS_QueryDatabaseParameterised("SELECT * FROM Tags WHERE Name=?", $searchString);
 
       // Print the Category names extracted from the database query
+      $numOfResults = 0;
       while($row = $queryResults->fetch_assoc())
       {
         $tagName = $row["Name"];
         echo "<p><a href=\"/TagSearch.html?searchString=$tagName\">$tagName</a></p>";
+        $numOfResults += 1;
       }
+
+      if($numOfResults < 1) echo "<p>No Posts with tag $searchString were found!</p>";
+      echo "<p>Testng</p>";
 
     ?>
     <p>Template Page</p>
