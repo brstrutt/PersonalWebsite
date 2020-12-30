@@ -8,9 +8,20 @@
   <body>
     <?php include_once($_SERVER['DOCUMENT_ROOT'] . "/NavBar.html"); ?>
     <?php
+      include_once($_SERVER['DOCUMENT_ROOT'] . "/DatabaseFunctions.php");
+
       $searchString = $_GET['searchString'];
       echo "<p>Tag Search Page searching for: $searchString</p>";
-      //TODO: SANITISE THE DAMN SEARCH STRING! People could just bung spooky stuff into it and directly affect sql queries that way. big nono.
+
+    	$queryResults = BS_QueryDatabase("SELECT * FROM Tags WHERE Name=? ORDER BY Name ASC", $searchString);
+
+      // Print the Category names extracted from the database query
+      while($row = $queryResults->fetch_assoc())
+      {
+        $tagName = $row["Name"];
+        echo "<p><a href=\"/TagSearch.html?searchString=$tagName\">$tagName</a></p>";
+      }
+
     ?>
     <p>Template Page</p>
   </body>

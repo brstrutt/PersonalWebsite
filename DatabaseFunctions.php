@@ -10,7 +10,18 @@ function BS_QueryDatabase($query)
 	return $queryResults;
 }
 
-// Return the directory path for this subdomains private directory
+// Query the website database using parameterised queries to avoid pesky sql injection
+function BS_QueryDatabaseParameterised($query, $parameter)
+{
+	$privateDir = BS_GetPrivateDirectory();
+	$dbParams = BS_LoadDatabaseCredentials($privateDir);
+	$dbConnection = BS_ConnectToDatabase($dbParams);
+	$queryResults = BS_ExecuteDatabaseQueryParameterised($dbConnection, $query, $parameter);
+	$dbConnection->close();
+	return $queryResults;
+}
+
+// Return the directory path for this subdomain's private directory
 function BS_GetPrivateDirectory()
 {
 	$publicDirName = "public_html";
@@ -42,6 +53,18 @@ function BS_ConnectToDatabase($db_params)
 function BS_ExecuteDatabaseQuery($dbConnection, $query)
 {
 	$query_result = $dbConnection->query($query);
+	return $query_result;
+}
+
+// Execute a given parameterised sql query on a given database connection, returning the result.
+function BS_ExecuteDatabaseQueryParameterised($dbConnection, $query, $parameter)
+{
+	$preparedStatement = $dbConnection->prepare($query);
+	$preparedStatement->bind_param("s", $parameter);
+	$preparedStatement->execute();
+	$preparedStatement->bind_result($query_result);
+	$preparedStatement->fetch();
+	$preparedStatement->close();
 	return $query_result;
 }
 ?>
