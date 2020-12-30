@@ -55,11 +55,6 @@ function BS_ConnectToDatabase($db_params)
 function BS_ExecuteDatabaseQuery($dbConnection, $query)
 {
 	$query_result = $dbConnection->query($query);
-	if($query_result == false)
-	{
-    $dbConnection->rollback();
-    echo "Db Query ($query) Failed: ".$db->error;
-	}
 	return $query_result;
 }
 
@@ -91,7 +86,7 @@ function BS_WipeDatabaseData()
 	$wipeTags = "TRUNCATE TABLE `Tags`;";
 	$wipeLinks = "TRUNCATE TABLE `PostTags`;";
 
-	BS_QueryDatabase("SET FOREIGN_KEY_CHECKS = 0; TRUNCATE TABLE `Posts`;");
+	BS_QueryDatabase("DELETE FROM `Posts`; ALTER TABLE `Posts` AUTO_INCREMENT = 1;");
 }
 
 function BS_InsertAllPostsToDatabase()
