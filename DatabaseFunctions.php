@@ -13,11 +13,15 @@ function BS_QueryDatabase($query)
 // Query the website database using parameterised queries to avoid pesky sql injection
 function BS_QueryDatabaseParameterised($query, $parameter)
 {
+	echo "<p>1.1</p>";
 	$privateDir = BS_GetPrivateDirectory();
 	$dbParams = BS_LoadDatabaseCredentials($privateDir);
 	$dbConnection = BS_ConnectToDatabase($dbParams);
+	echo "<p>1.2</p>";
 	$queryResults = BS_ExecuteDatabaseQueryParameterised($dbConnection, $query, $parameter);
+	echo "<p>1.3</p>";
 	$dbConnection->close();
+	echo "<p>1.4</p>";
 	return $queryResults;
 }
 
@@ -59,12 +63,19 @@ function BS_ExecuteDatabaseQuery($dbConnection, $query)
 // Execute a given parameterised sql query on a given database connection, returning the result.
 function BS_ExecuteDatabaseQueryParameterised($dbConnection, $query, $parameter)
 {
+	echo "<p>1.2.1</p>";
 	$preparedStatement = $dbConnection->prepare($query);
+	echo "<p>1.2.2</p>";
 	$preparedStatement->bind_param("s", $parameter);
+	echo "<p>1.2.3</p>";
 	$preparedStatement->execute();
+	echo "<p>1.2.4</p>";
 	$preparedStatement->bind_result($query_result);
+	echo "<p>1.2.5</p>";
 	$preparedStatement->fetch();
+	echo "<p>1.2.6</p>";
 	$preparedStatement->close();
+	echo "<p>1.2.7</p>";
 	return $query_result;
 }
 ?>

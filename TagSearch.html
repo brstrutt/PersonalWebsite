@@ -13,7 +13,9 @@
       $searchString = $_GET['searchString'];
       echo "<p>Tag Search Page searching for: $searchString</p>";
 
-    	$queryResults = BS_QueryDatabaseParameterised("SELECT * FROM Tags WHERE Name='?'", $searchString);
+      echo "<p>1</p>";
+    	$queryResults = BS_QueryDatabaseParameterised("SELECT * FROM Tags WHERE Name=?", $searchString);
+      echo "<p>2</p>";
 
       // Print the Category names extracted from the database query
       while($row = $queryResults->fetch_assoc())
