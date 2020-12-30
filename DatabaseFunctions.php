@@ -125,7 +125,9 @@ function BS_InsertPostToDatabase($postsDir, $post)
 
 	// Insert the Post into the Database
 	echo "<p>Insertig $post</p>";
-	$insertedPost = BS_QueryDatabaseParameterised("INSERT INTO `Posts` (`ID`, `Name`, `CreationDate`) VALUES (NULL, ?, ?)", [["s",$post],["s",$creationUpdateDates[0]]]);
+	BS_QueryDatabaseParameterised("INSERT INTO `Posts` (`ID`, `Name`, `CreationDate`) VALUES (NULL, ?, ?)", [["s",$post],["s",$creationUpdateDates[0]]]);
+
+	$insertedPost = BS_QueryDatabaseParameterised("SELECT * FROM Posts WHERE Name LIKE ?", [["s", $post]]);
 	$postData = $insertedPost->fetch_assoc();
 
 	// Insert each Tag that isn't yet inserted
@@ -137,7 +139,9 @@ function BS_InsertPostToDatabase($postsDir, $post)
 		{
 			$isCategory = 0;
 			if(strcmp($tag, $category[0]) == 0) $isCategory = 1;
-			$existingTag = BS_QueryDatabaseParameterised("INSERT INTO `Tags` (`ID`, `Name`, `IsCategory`) VALUES (NULL, ?, ?)", [["s",$tag],["i",$isCategory]]);
+			BS_QueryDatabaseParameterised("INSERT INTO `Tags` (`ID`, `Name`, `IsCategory`) VALUES (NULL, ?, ?)", [["s",$tag],["i",$isCategory]]);
+
+			$existingTag = BS_QueryDatabaseParameterised("SELECT * FROM Tags WHERE Name LIKE ?", [["s", $tag]]);
 		}
 		$tagData = $existingTag->fetch_assoc();
 
