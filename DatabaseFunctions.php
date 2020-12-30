@@ -11,12 +11,14 @@ function BS_QueryDatabase($query)
 }
 
 // Query the website database using parameterised queries to avoid pesky sql injection
-function BS_QueryDatabaseParameterised($query, $parameter)
+// Expects $parameters to be an array of arrays, with each sub array being the Type and vaue of that parameter
+// E.G [["s", $name]] would be a single parameter of type "s" with value $name
+function BS_QueryDatabaseParameterised($query, $parameters)
 {
 	$privateDir = BS_GetPrivateDirectory();
 	$dbParams = BS_LoadDatabaseCredentials($privateDir);
 	$dbConnection = BS_ConnectToDatabase($dbParams);
-	$queryResults = BS_ExecuteDatabaseQueryParameterised($dbConnection, $query, $parameter);
+	$queryResults = BS_ExecuteDatabaseQueryParameterised($dbConnection, $query, $parameters);
 	$dbConnection->close();
 	return $queryResults;
 }
@@ -57,10 +59,13 @@ function BS_ExecuteDatabaseQuery($dbConnection, $query)
 }
 
 // Execute a given parameterised sql query on a given database connection, returning the result.
-function BS_ExecuteDatabaseQueryParameterised($dbConnection, $query, $parameter)
+function BS_ExecuteDatabaseQueryParameterised($dbConnection, $query, $parameters)
 {
 	$preparedStatement = $dbConnection->prepare($query);
-	$preparedStatement->bind_param("s", $parameter);
+	foreach($parameters as $parameter)
+	{
+		$preparedStatement->bind_param($parameter[0], $parameter[1]);
+	}
 	$preparedStatement->execute();
 	$query_result = $preparedStatement->get_result();
 	$preparedStatement->close();

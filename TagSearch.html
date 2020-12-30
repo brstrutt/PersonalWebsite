@@ -19,8 +19,8 @@
       $queryConditional = "WHERE `Tags`.`Name` LIKE ?";
 
       $query = $querySelect . $queryJoinPostsToTags . $queryConditional;
-
-      $queryResults = BS_QueryDatabaseParameterised($query, $searchString);
+      $params = [["s",$searchString]];
+      $queryResults = BS_QueryDatabaseParameterised($query, $params);
 
       // Print the Category names extracted from the database query
       $numOfResults = 0;
