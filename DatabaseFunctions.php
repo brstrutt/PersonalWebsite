@@ -100,9 +100,7 @@ function BS_InsertAllPostsToDatabase()
 	foreach($dirs as $dir)
 	{
 		$dirName =  str_replace($postsDir, "", $dir);
-		echo "<p>Start Add $dirName to Database.</p>";
 		BS_InsertPostToDatabase($postsDir, $dirName);
-		echo "<p>Added $dirName!</p>";
 	}
 }
 
@@ -112,8 +110,6 @@ function BS_InsertAllPostsToDatabase()
 // TODO: Stop Duplication of Posts
 function BS_InsertPostToDatabase($postsDir, $post)
 {
-	echo "<p>Reading $post Data</p>";
-
 	// Read the csv
 	$postDataFile = fopen($postsDir . $post . "/data.csv", "r");
 	$category = fgetcsv($postDataFile);
@@ -123,14 +119,12 @@ function BS_InsertPostToDatabase($postsDir, $post)
 	fclose($postDataFile);
 
 	// Insert the Post into the Database
-	echo "<p>Insertig $post</p>";
 	BS_QueryDatabaseParameterised("INSERT INTO `Posts` (`ID`, `Name`, `CreationDate`) VALUES (NULL, ?, ?)", ["ss",[$post, '2020-12-12']]);
 
 	$insertedPost = BS_QueryDatabaseParameterised("SELECT * FROM Posts WHERE Name LIKE ?", ["s", [$post]]);
 	$postData = $insertedPost->fetch_assoc();
 
 	// Insert each Tag that isn't yet inserted
-	echo "<p>Inserting Tags</p>";
 	foreach($tags as $tag)
 	{
 		$existingTag = BS_QueryDatabaseParameterised("SELECT * FROM Tags WHERE Name LIKE ?", ["s", [$tag]]);
