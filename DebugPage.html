@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>Debug Page</title>
+    <link rel="stylesheet" href="/style.css"/>
+  </head>
+  <body>
+    <?php include_once($_SERVER['DOCUMENT_ROOT'] . "/NavBar.html"); ?>
+    <p>Page with buttons for testing php functions that poke the database. NOTE: Buttons should only work on Dev, not Prod.</p>
+
+    <form method="post">
+      <input type="submit" name="ResetDb" id="ResetDb" value="Reset Database" /><br/>
+      <input type="submit" name="WipeDb" id="WipeDb" value="Wipe Database" /><br/>
+      <input type="submit" name="InsertPostsToDb" id="InsertPostsToDb" value="Insert Posts To Database" /><br/>
+    </form>
+
+    <?php
+      include_once($_SERVER['DOCUMENT_ROOT'] . "/DatabaseFunctions.php");
+
+      if(BS_IsDevSite())
+      {
+        if(array_key_exists('ResetDb',$_POST))
+        {
+          echo "Resetting Database...";
+          BS_ResetDatabaseToCurrentPosts();
+          echo "Database Reset";
+        }
+
+        if(array_key_exists('WipeDb',$_POST))
+        {
+          echo "Wiping Database...";
+          BS_WipeDatabaseData();
+          echo "Database Wiped";
+        }
+
+        if(array_key_exists('InsertPostsToDb',$_POST))
+        {
+          echo "Inserting Posts into Database...";
+          BS_InsertAllPostsToDatabase();
+          echo "Database Received Posts";
+        }
+      }
+    ?>
+  </body>
+</html>

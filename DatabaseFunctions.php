@@ -1,4 +1,9 @@
 <?php
+function BS_IsDevSite()
+{
+	return $_SERVER['HTTP_HOST'] == 'dev.benstrutt.space';
+}
+
 // Query the website database and return the results
 function BS_QueryDatabase($query)
 {
