@@ -112,9 +112,11 @@ function BS_InsertAllPostsToDatabase()
 // Insert a specified post into the database
 // Directory that contains the post must be specified
 // the Post itself is expected to be a directory containing at LEAST a data.csv
-// TODO: Stop Duplication of Posts
 function BS_InsertPostToDatabase($postsDir, $post)
 {
+	// Delete any existing post with the given name
+	BS_QueryDatabaseParameterised("DELETE FROM Posts WHERE Name LIKE ?", ["s", [$post]]);
+
 	// Read the csv
 	$postDataFile = fopen($postsDir . $post . "/data.csv", "r");
 	$category = fgetcsv($postDataFile);
