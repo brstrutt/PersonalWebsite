@@ -10,19 +10,5 @@
     <p>This was a terrible idea I don't even know what an internet IS.</p>
     <p>Only a FOOL would try to build a website from scratch with no webdev experience or sense of taste...</p>
     <p>On an unrelated note if you want to hire a fool I'm afraid I'm not available right now.</p>
-
-    <form method="post">
-      <input type="submit" name="ResetDb" id="ResetDb" value="Reset Database" /><br/>
-    </form>
-
-    <?php
-      include_once($_SERVER['DOCUMENT_ROOT'] . "/DatabaseFunctions.php");
-      if(array_key_exists('ResetDb',$_POST))
-      {
-        echo "Resetting Database...";
-        BS_ResetDatabaseToCurrentPosts();
-        echo "Database Reset";
-      }
-    ?>
   </body>
 </html>
