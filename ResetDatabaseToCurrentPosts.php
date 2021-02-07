@@ -1,5 +1,6 @@
 <?php
 echo "Include the database functions!";
+echo $_SERVER['DOCUMENT_ROOT'];
 include_once($_SERVER['DOCUMENT_ROOT'] . "/DatabaseFunctions.php");
 echo "Start resetting the doongaloong!";
 BS_ResetDatabaseToCurrentPosts();
