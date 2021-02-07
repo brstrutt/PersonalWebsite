@@ -79,18 +79,22 @@ function BS_ExecuteDatabaseQueryParameterised($dbConnection, $query, $parameters
 // Delete all data in the current database, then insert each post and its tags
 function BS_ResetDatabaseToCurrentPosts()
 {
+	echo "Start wiping the database";
 	BS_WipeDatabaseData();
-	BS_InsertAllPostsToDatabase();
+	echo "Database Wiped";
+	//BS_InsertAllPostsToDatabase();
 }
 
 // Wipe database data leaving the structure untouched
 function BS_WipeDatabaseData()
 {
+	echo "Let the queries BEGIN!";
 	BS_QueryDatabase("DELETE FROM `Posts`");
 	BS_QueryDatabase("ALTER TABLE `Posts` AUTO_INCREMENT = 1");
 	BS_QueryDatabase("DELETE FROM `Tags`");
 	BS_QueryDatabase("ALTER TABLE `Tags` AUTO_INCREMENT = 1");
 	BS_QueryDatabase("TRUNCATE TABLE `PostTags`");
+	echo "Queries complet";
 }
 
 // Scan through the folder structure to find all Posts

@@ -23,7 +23,7 @@
         if(array_key_exists('ResetDb',$_POST))
         {
           echo "Resetting Database...";
-          BS_ResetDatabaseToCurrentPosts();
+          include_once($_SERVER['DOCUMENT_ROOT'] . "/ResetDatabaseToCurrentPosts.php");
           echo "Database Reset";
         }
 
