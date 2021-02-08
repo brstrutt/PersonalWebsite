@@ -1,10 +1,18 @@
 <nav>
   <ul id="InternalLinks">
     <li><a href="/">Home</a></li>
-    <li><a href="/Page1.html">Projects</a></li>
-    <li><a href="/Page2.html">Wrestling</a></li>
-    <li><a href="/Page3.html">NerdShit</a></li>
-    <li><a href="/Maps/">Maps</a></li>
+    <?php
+      include_once($_SERVER['DOCUMENT_ROOT'] . "/DatabaseFunctions.php");
+    	$queryResults = BS_QueryDatabase("SELECT * FROM Tags WHERE IsCategory = 1");
+
+      // Print the Category names extracted from the database query
+      while($row = $queryResults->fetch_assoc())
+      {
+        $tagName = $row["Name"];
+        echo "<li><a href=\"/TagSearch.html?searchString=$tagName\">$tagName</a></li>";
+      }
+    ?>
+    <li><a href="/TagCloud.html">Tags</a></li>
   </ul>
   <ul id="ExternalLinks">
     <li>
@@ -17,5 +25,12 @@
           <img src="/icons/LI-In-Bug-Modified.png" title="LinkedIn" alt="LinkedIn Logo(Slightly Modified)" width="32px" height="32px"/>
       </a>
     </li>
+    <?php
+      // Put up a small banner at the bottom of the nav bar to remind me if I'm looking at Dev or Prod. hehe. prodprod...prod.
+      if(BS_IsDevSite())
+      {
+        echo "<li><a href=\"/DebugPage.html\">DEBUG PAGE</a></li>";
+      }
+    ?>
   </ul>
 </nav>

@@ -1,3 +1,6 @@
 # Legacy Directories that shouldn't be in the final website
 OldWebsiteStuff/
 ProjectsSUPERBarebones/
+
+# Do NOT include the database credentials
+database_credentials.ini
