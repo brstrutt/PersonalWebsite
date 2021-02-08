@@ -152,7 +152,7 @@ function BS_InsertPostToDatabase($postsDir, $post)
 		$postId = $postData["ID"];
 		$tagId = $tagData["ID"];
 		echo "BIG3.2";
-		BS_QueryDatabaseParameterised("INSERT INTO `PostTags` (`ID`, `PostId`, `TagId`) VALUES (NULL, ?, ?)", ["ii",[$postId, $tagId]]);
+		BS_QueryDatabaseParameterised("INSERT INTO `PostTags` (PostId`, `TagId`) VALUES (?, ?)", ["ii",[$postId, $tagId]]);
 	}
 }
 ?>
