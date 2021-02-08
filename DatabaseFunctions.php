@@ -114,6 +114,7 @@ function BS_InsertAllPostsToDatabase()
 // the Post itself is expected to be a directory containing at LEAST a data.csv
 function BS_InsertPostToDatabase($postsDir, $post)
 {
+	echo "BIG1";
 	// Delete any existing post with the given name
 	BS_QueryDatabaseParameterised("DELETE FROM Posts WHERE Name LIKE ?", ["s", [$post]]);
 
@@ -125,6 +126,7 @@ function BS_InsertPostToDatabase($postsDir, $post)
 	$creationUpdateDates = fgetcsv($postDataFile);
 	fclose($postDataFile);
 
+		echo "BIG2";
 	// Insert the Post into the Database
 	BS_QueryDatabaseParameterised("INSERT INTO `Posts` (`ID`, `Name`, `CreationDate`) VALUES (NULL, ?, ?)", ["ss",[$post, $creationUpdateDates[0]]]);
 
@@ -134,11 +136,13 @@ function BS_InsertPostToDatabase($postsDir, $post)
 	// Insert each Tag that isn't yet inserted
 	foreach($tags as $tag)
 	{
+		echo "BIG3.1";
 		$existingTag = BS_QueryDatabaseParameterised("SELECT * FROM Tags WHERE Name LIKE ?", ["s", [$tag]]);
 		if($existingTag->num_rows < 1)
 		{
 			$isCategory = 0;
 			if(strcmp($tag, $category[0]) == 0) $isCategory = 1;
+				echo "BIG3.1.1";
 			BS_QueryDatabaseParameterised("INSERT INTO `Tags` (`ID`, `Name`, `IsCategory`) VALUES (NULL, ?, ?)", ["si",[$tag, $isCategory]]);
 
 			$existingTag = BS_QueryDatabaseParameterised("SELECT * FROM Tags WHERE Name LIKE ?", ["s", [$tag]]);
@@ -147,6 +151,7 @@ function BS_InsertPostToDatabase($postsDir, $post)
 
 		$postId = $postData["ID"];
 		$tagId = $tagData["ID"];
+		echo "BIG3.2";
 		BS_QueryDatabaseParameterised("INSERT INTO `PostTags` (`ID`, `PostId`, `TagId`) VALUES (NULL, ?, ?)", ["ii",[$postId, $tagId]]);
 	}
 }
