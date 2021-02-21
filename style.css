@@ -28,7 +28,10 @@ main{
 
 a.Tag{
     color: var(--color-palette-highlight);
-    text-decoration:none;
+}
+
+a.Tag:visited{
+    color: var(--color-palette-foreground);
 }
 
 nav{
