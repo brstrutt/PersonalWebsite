@@ -7,31 +7,32 @@
   </head>
   <body>
     <?php include_once($_SERVER['DOCUMENT_ROOT'] . "/NavBar.html"); ?>
-    <?php
-      include_once($_SERVER['DOCUMENT_ROOT'] . "/DatabaseFunctions.php");
+    <main>
+      <?php
+        include_once($_SERVER['DOCUMENT_ROOT'] . "/DatabaseFunctions.php");
 
-      $searchString = $_GET['searchString'];
+        $searchString = $_GET['searchString'];
 
-      $querySelect = "SELECT `Posts`.Name FROM";
-      $queryJoinPostsToPostTags = "`PostTags` INNER JOIN `Posts` ON `Posts`.`ID` = `PostTags`.`PostID`";
-      $queryJoinTagsToPostTags = "INNER JOIN `Tags` ON `Tags`.`ID` = `PostTags`.`TagID`";
-      $queryJoinPostsToTags = " (($queryJoinPostsToPostTags) $queryJoinTagsToPostTags)";
-      $queryConditional = "WHERE `Tags`.`Name` LIKE ?";
+        $querySelect = "SELECT `Posts`.Name FROM";
+        $queryJoinPostsToPostTags = "`PostTags` INNER JOIN `Posts` ON `Posts`.`ID` = `PostTags`.`PostID`";
+        $queryJoinTagsToPostTags = "INNER JOIN `Tags` ON `Tags`.`ID` = `PostTags`.`TagID`";
+        $queryJoinPostsToTags = " (($queryJoinPostsToPostTags) $queryJoinTagsToPostTags)";
+        $queryConditional = "WHERE `Tags`.`Name` LIKE ?";
 
-      $query = $querySelect . $queryJoinPostsToTags . $queryConditional;
-      $queryResults = BS_QueryDatabaseParameterised($query, ["s", [$searchString]]);
+        $query = $querySelect . $queryJoinPostsToTags . $queryConditional;
+        $queryResults = BS_QueryDatabaseParameterised($query, ["s", [$searchString]]);
 
-      // Print the Category names extracted from the database query
-      $numOfResults = 0;
-      while($row = $queryResults->fetch_assoc())
-      {
-        $postName = $row["Name"];
-        echo "<p><a href=\"/posts/$postName\">$postName</a></p>";
-        $numOfResults += 1;
-      }
+        // Print the Category names extracted from the database query
+        $numOfResults = 0;
+        while($row = $queryResults->fetch_assoc())
+        {
+          $postName = $row["Name"];
+          echo "<p><a href=\"/posts/$postName\">$postName</a></p>";
+          $numOfResults += 1;
+        }
 
-      if($numOfResults < 1) echo "<p>No Posts with tag $searchString were found!</p>";
-    ?>
-    <p>Template Page</p>
+        if($numOfResults < 1) echo "<p>No Posts with tag $searchString were found!</p>";
+      ?>
+    </main>
   </body>
 </html>

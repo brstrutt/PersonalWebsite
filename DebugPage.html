@@ -7,40 +7,42 @@
   </head>
   <body>
     <?php include_once($_SERVER['DOCUMENT_ROOT'] . "/NavBar.html"); ?>
-    <p>Page with buttons for testing php functions that poke the database. NOTE: Buttons should only work on Dev, not Prod.</p>
+    <main>
+      <p>Page with buttons for testing php functions that poke the database. NOTE: Buttons should only work on Dev, not Prod.</p>
 
-    <form method="post">
-      <input type="submit" name="ResetDb" id="ResetDb" value="Reset Database" /><br/>
-      <input type="submit" name="WipeDb" id="WipeDb" value="Wipe Database" /><br/>
-      <input type="submit" name="InsertPostsToDb" id="InsertPostsToDb" value="Insert Posts To Database" /><br/>
-    </form>
+      <form method="post">
+        <input type="submit" name="ResetDb" id="ResetDb" value="Reset Database" /><br/>
+        <input type="submit" name="WipeDb" id="WipeDb" value="Wipe Database" /><br/>
+        <input type="submit" name="InsertPostsToDb" id="InsertPostsToDb" value="Insert Posts To Database" /><br/>
+      </form>
 
-    <?php
-      include_once($_SERVER['DOCUMENT_ROOT'] . "/DatabaseFunctions.php");
+      <?php
+        include_once($_SERVER['DOCUMENT_ROOT'] . "/DatabaseFunctions.php");
 
-      if(BS_IsDevSite())
-      {
-        if(array_key_exists('ResetDb',$_POST))
+        if(BS_IsDevSite())
         {
-          echo "Resetting Database...";
-          include_once($_SERVER['DOCUMENT_ROOT'] . "/ResetDatabaseToCurrentPosts.php");
-          echo "Database Reset";
-        }
+          if(array_key_exists('ResetDb',$_POST))
+          {
+            echo "Resetting Database...";
+            include_once($_SERVER['DOCUMENT_ROOT'] . "/ResetDatabaseToCurrentPosts.php");
+            echo "Database Reset";
+          }
 
-        if(array_key_exists('WipeDb',$_POST))
-        {
-          echo "Wiping Database...";
-          BS_WipeDatabaseData();
-          echo "Database Wiped";
-        }
+          if(array_key_exists('WipeDb',$_POST))
+          {
+            echo "Wiping Database...";
+            BS_WipeDatabaseData();
+            echo "Database Wiped";
+          }
 
-        if(array_key_exists('InsertPostsToDb',$_POST))
-        {
-          echo "Inserting Posts into Database...";
-          BS_InsertAllPostsToDatabase();
-          echo "Database Received Posts";
+          if(array_key_exists('InsertPostsToDb',$_POST))
+          {
+            echo "Inserting Posts into Database...";
+            BS_InsertAllPostsToDatabase();
+            echo "Database Received Posts";
+          }
         }
-      }
-    ?>
+      ?>
+    </main>
   </body>
 </html>
