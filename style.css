@@ -23,6 +23,7 @@ p{
 }
 
 main{
+  overflow: auto;
   margin-left: 80px;
 }
 
