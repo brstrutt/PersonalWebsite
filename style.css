@@ -22,6 +22,10 @@ p{
   margin: 0;
 }
 
+main{
+  margin-left: 80px;
+}
+
 nav{
     background-color: var(--color-palette-background2);
     color: var(--color-palette-highlight);
@@ -32,7 +36,6 @@ nav{
     height: 100%;
     width: 80px;
     text-align: center;
-    overflow: auto;
 }
 
 nav ul{
