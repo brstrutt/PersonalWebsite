@@ -26,7 +26,7 @@ main{
   margin-left: 80px;
 }
 
-a.Tag a.Tag:visited{
+a.Tag{
     color: inherit;
     text-decoration:none;
 }
