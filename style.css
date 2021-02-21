@@ -27,7 +27,7 @@ main{
 }
 
 a.Tag{
-    color: inherit;
+    color: var(--color-palette-highlight);
     text-decoration:none;
 }
 
