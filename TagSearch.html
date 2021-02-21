@@ -2,7 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8"/>
-    <?php echo "<title>Tag Search for $_GET['searchString']</title>"; ?>
+    <?php
+      $searchString = $_GET['searchString'];
+      echo "<title>Tag Search for $searchString</title>";
+    ?>
     <link rel="stylesheet" href="/style.css"/>
   </head>
   <body>
