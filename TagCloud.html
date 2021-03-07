@@ -13,10 +13,8 @@
           include_once($_SERVER['DOCUMENT_ROOT'] . "/DatabaseFunctions.php");
         	$queryResults = BS_QueryDatabase("SELECT *, COUNT(*) FROM Tags t INNER JOIN PostTags pt ON pt.TagID = t.ID WHERE t.IsCategory = 0 GROUP BY t.ID ORDER BY Name ASC");
 
-          $fontMin = 8;
-          $fontMax = 75;
-          // Print the Category names extracted from the database query
-          $rows = [];
+          // Extract the query results into an array, grabbing the Maximum COUNT in the process for font scaling reasons
+          $rows[] = array();
           $maxCount = 0;
           while($row = $queryResults->fetch_assoc())
           {
@@ -25,9 +23,12 @@
             {
               $maxCount = $count;
             }
-            $rows = $row;
+            $rows[] = $row;
           }
 
+          // Print the Category names extracted from the database query with font size varying by how many posts have that Tag
+          $fontMin = 8;
+          $fontMax = 75;
           foreach($rows as $row)
           {
             $tagName = $row["Name"];
