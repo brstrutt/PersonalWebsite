@@ -14,10 +14,12 @@
         	$queryResults = BS_QueryDatabase("SELECT * FROM Tags ORDER BY Name ASC");
 
           // Print the Category names extracted from the database query
+          $counter = 8;
           while($row = $queryResults->fetch_assoc())
           {
             $tagName = $row["Name"];
-            echo "<li><a class=Tag href=\"/TagSearch.html?searchString=$tagName\">$tagName</a></li>";
+            echo "<li><a class=Tag font-size:$counterpx href=\"/TagSearch.html?searchString=$tagName\">$tagName</a></li>";
+            $counter += 2;
           }
         ?>
       </ul>
