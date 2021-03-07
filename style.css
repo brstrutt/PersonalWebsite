@@ -1,6 +1,7 @@
 :root {
   --color-palette-background1:#424242;
   --color-palette-background2:#212121;
+  --color-palette-selected-background:#313131;
   --color-palette-foreground:#BBBBBB;
   --color-palette-highlight:#F0F0F0;
 }
@@ -81,4 +82,26 @@ ul.TagCloud{
 ul.TagCloud li{
   display: inherit;
   margin: 20px;
+}
+
+ul.TagSearchResults{
+  display: inline-block;
+  list-style: none;
+}
+
+ul.TagSearchResults li{
+  display: inherit;
+  margin: 20px;
+}
+
+ul.TagSearchResults a{
+  background-color: var(--color-palette-background2);
+  border: 1px solid var(--color-palette-highlight);
+  border-radius: 4px;
+  display: inherit;
+  padding: 10px;
+}
+
+ul.TagSearchResults a:hover{
+  background-color: var(--color-palette-selected-background);
 }
