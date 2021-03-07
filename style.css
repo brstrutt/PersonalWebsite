@@ -88,6 +88,10 @@ ul.TagSearchResults{
   list-style: none;
 }
 
+ul.TagSearchResults a{
+  display: inherit;
+}
+
 ul.TagSearchResults li{
   background-color: var(--color-palette-background2);
   border: 1px solid var(--color-palette-highlight);
