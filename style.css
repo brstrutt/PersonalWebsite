@@ -1,6 +1,7 @@
 :root {
   --color-palette-background1:#424242;
   --color-palette-background2:#212121;
+  --color-palette-selected-background:#313131;
   --color-palette-foreground:#BBBBBB;
   --color-palette-highlight:#F0F0F0;
 }
@@ -102,5 +103,5 @@ ul.TagSearchResults a{
 }
 
 ul.TagSearchResults a:hover{
-  background-color: var(--color-palette-foreground);
+  background-color: var(--color-palette-selected-background);
 }
