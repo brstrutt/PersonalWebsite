@@ -98,6 +98,7 @@ ul.TagSearchResults a{
   background-color: var(--color-palette-background2);
   border: 1px solid var(--color-palette-highlight);
   border-radius: 4px;
+  color: var(--color-palette-highlight);
   display: inherit;
   padding: 10px;
 }
