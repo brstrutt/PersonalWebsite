@@ -25,6 +25,7 @@ p{
 main{
   overflow: auto;
   margin-left: 80px;
+  text-align: center;
 }
 
 a.Tag{
@@ -68,6 +69,10 @@ nav li{
 }
 
 nav a, a:visited{
-    color: inherit;
-    text-decoration:none;
+  color: inherit;
+  text-decoration:none;
+}
+
+ul.TagCloud{
+
 }

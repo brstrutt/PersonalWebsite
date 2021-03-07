@@ -8,17 +8,19 @@
   <body>
     <?php include_once($_SERVER['DOCUMENT_ROOT'] . "/NavBar.html"); ?>
     <main>
-      <?php
-        include_once($_SERVER['DOCUMENT_ROOT'] . "/DatabaseFunctions.php");
-      	$queryResults = BS_QueryDatabase("SELECT * FROM Tags ORDER BY Name ASC");
+      <ul class=TagCloud>
+        <?php
+          include_once($_SERVER['DOCUMENT_ROOT'] . "/DatabaseFunctions.php");
+        	$queryResults = BS_QueryDatabase("SELECT * FROM Tags ORDER BY Name ASC");
 
-        // Print the Category names extracted from the database query
-        while($row = $queryResults->fetch_assoc())
-        {
-          $tagName = $row["Name"];
-          echo "<p><a class=Tag href=\"/TagSearch.html?searchString=$tagName\">$tagName</a></p>";
-        }
-      ?>
+          // Print the Category names extracted from the database query
+          while($row = $queryResults->fetch_assoc())
+          {
+            $tagName = $row["Name"];
+            echo "<li><a class=Tag href=\"/TagSearch.html?searchString=$tagName\">$tagName</a></li>";
+          }
+        ?>
+      </ul>
     </main>
   </body>
 </html>
