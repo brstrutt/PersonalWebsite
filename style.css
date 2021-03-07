@@ -88,15 +88,15 @@ ul.TagSearchResults{
   list-style: none;
 }
 
-ul.TagSearchResults a{
+ul.TagSearchResults li{
   display: inherit;
+  margin: 20px;
 }
 
-ul.TagSearchResults li{
+ul.TagSearchResults a{
   background-color: var(--color-palette-background2);
   border: 1px solid var(--color-palette-highlight);
   border-radius: 4px;
   display: inherit;
-  margin: 20px;
   padding: 10px;
 }

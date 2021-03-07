@@ -32,12 +32,12 @@
           {
             $postName = $row["Name"];
 
-            echo "<a href=\"/posts/{$postName}\">";
             echo "<li>";
+            echo "<a href=\"/posts/{$postName}\">";
             echo "<h4>{$postName}</h4>";
             echo "<img src = \"/posts/{$postName}/thumbnail_Small.jpg\" alt = \"Insert {$postName} Thumbail}\"/>";
-            echo "</li>";
             echo "</a>";
+            echo "</li>";
 
             $numOfResults += 1;
           }
