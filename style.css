@@ -82,3 +82,13 @@ ul.TagCloud li{
   display: inherit;
   margin: 20px;
 }
+
+ul.TagSearchResults{
+  display: inline-block;
+  list-style: none;
+}
+
+ul.TagSearchResults li{
+  display: inherit;
+  margin: 20px;
+}
