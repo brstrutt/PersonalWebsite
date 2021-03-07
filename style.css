@@ -98,10 +98,12 @@ ul.TagSearchResults a{
   background-color: var(--color-palette-background2);
   border: 1px solid var(--color-palette-highlight);
   border-radius: 4px;
+  color: var(--color-palette-foreground);
   display: inherit;
   padding: 10px;
 }
 
 ul.TagSearchResults a:hover{
   background-color: var(--color-palette-selected-background);
+  color: var(--color-palette-highlight);
 }
