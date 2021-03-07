@@ -29,12 +29,15 @@
           // Print the Category names extracted from the database query with font size varying by how many posts have that Tag
           $fontMin = 8;
           $fontMax = 75;
+          $maxCountSqrd = pow($maxCount, 2);
           foreach($rows as $row)
           {
             $tagName = $row["Name"];
             $count = $row["COUNT(*)"];
 
-            $fontSize = $fontMin + (($fontMax * $count)/$maxCount);
+            $countSqrd = pow($count, 2);
+
+            $fontSize = $fontMin + $fontMax * ($countSqrd/$maxCountSqrd);
             echo "<li><a class=Tag style=\"font-size:{$fontSize}px;\" href=\"/TagSearch.html?searchString=$tagName\">$tagName</a></li>";
           }
         ?>
