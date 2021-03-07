@@ -8,17 +8,37 @@
   <body>
     <?php include_once($_SERVER['DOCUMENT_ROOT'] . "/NavBar.html"); ?>
     <main>
-      <?php
-        include_once($_SERVER['DOCUMENT_ROOT'] . "/DatabaseFunctions.php");
-      	$queryResults = BS_QueryDatabase("SELECT * FROM Tags ORDER BY Name ASC");
+      <ul class=TagCloud>
+        <?php
+          include_once($_SERVER['DOCUMENT_ROOT'] . "/DatabaseFunctions.php");
+        	$queryResults = BS_QueryDatabase("SELECT *, COUNT(*) FROM Tags t INNER JOIN PostTags pt ON pt.TagID = t.ID WHERE t.IsCategory = 0 GROUP BY t.ID ORDER BY Name ASC");
 
-        // Print the Category names extracted from the database query
-        while($row = $queryResults->fetch_assoc())
-        {
-          $tagName = $row["Name"];
-          echo "<p><a class=Tag href=\"/TagSearch.html?searchString=$tagName\">$tagName</a></p>";
-        }
-      ?>
+          // Extract the query results into an array, grabbing the Maximum COUNT in the process for font scaling reasons
+          $rows[] = array();
+          $maxCount = 0;
+          while($row = $queryResults->fetch_assoc())
+          {
+            $count = $row["COUNT(*)"];
+            if($count > $maxCount)
+            {
+              $maxCount = $count;
+            }
+            $rows[] = $row;
+          }
+
+          // Print the Category names extracted from the database query with font size varying by how many posts have that Tag
+          $fontMin = 8;
+          $fontMax = 75;
+          foreach($rows as $row)
+          {
+            $tagName = $row["Name"];
+            $count = $row["COUNT(*)"];
+
+            $fontSize = $fontMin + (($fontMax * $count)/$maxCount);
+            echo "<li><a class=Tag style=\"font-size:{$fontSize}px;\" href=\"/TagSearch.html?searchString=$tagName\">$tagName</a></li>";
+          }
+        ?>
+      </ul>
     </main>
   </body>
 </html>
