@@ -17,7 +17,7 @@
           while($row = $queryResults->fetch_assoc())
           {
             $tagName = $row["Name"];
-            $count = $row["COUNT"];
+            $count = $row["COUNT(*)"];
             echo "<li><a class=Tag style=\"font-size:{$count}px;\" href=\"/TagSearch.html?searchString=$tagName\">$tagName</a></li>";
           }
         ?>
