@@ -102,5 +102,5 @@ ul.TagSearchResults a{
 }
 
 ul.TagSearchResults a:hover{
-  background-color: var(--color-palette-background1);
+  background-color: var(--color-palette-foreground);
 }
