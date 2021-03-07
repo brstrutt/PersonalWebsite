@@ -11,15 +11,14 @@
       <ul class=TagCloud>
         <?php
           include_once($_SERVER['DOCUMENT_ROOT'] . "/DatabaseFunctions.php");
-        	$queryResults = BS_QueryDatabase("SELECT * FROM Tags ORDER BY Name ASC");
+        	$queryResults = BS_QueryDatabase("SELECT *, COUNT(*) FROM Tags t INNER JOIN PostTags pt ON pt.TagID = t.ID WHERE t.IsCategory = 0 GROUP BY t.ID ORDER BY Name ASC");
 
           // Print the Category names extracted from the database query
-          $counter = 8;
           while($row = $queryResults->fetch_assoc())
           {
             $tagName = $row["Name"];
-            echo "<li><a class=Tag style=\"font-size:{$counter}px;\" href=\"/TagSearch.html?searchString=$tagName\">$tagName</a></li>";
-            $counter += 2;
+            $count = $row["COUNT"];
+            echo "<li><a class=Tag style=\"font-size:{$count}px;\" href=\"/TagSearch.html?searchString=$tagName\">$tagName</a></li>";
           }
         ?>
       </ul>
