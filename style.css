@@ -74,5 +74,10 @@ nav a, a:visited{
 }
 
 ul.TagCloud{
+  display: inline-block;
+}
 
+ul.TagClout li{
+  display: inherit;
+  margin: 20px;
 }
