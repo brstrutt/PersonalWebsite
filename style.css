@@ -20,7 +20,6 @@ body{
 }
 
 p{
-  margin: 0;
   text-align: left;
 }
 
@@ -28,7 +27,7 @@ main{
   overflow: auto;
   margin-left: 80px;
   text-align: center;
-  padding: 20px 200px;
+  padding: 20px 400px 0px 320px;
 }
 
 section{
