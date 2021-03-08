@@ -21,12 +21,14 @@ body{
 
 p{
   margin: 0;
+  text-align: left;
 }
 
 main{
   overflow: auto;
   margin-left: 80px;
   text-align: center;
+  padding: 50px;
 }
 
 a.Tag{

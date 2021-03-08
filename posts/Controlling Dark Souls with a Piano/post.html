@@ -1,23 +1,24 @@
-<h4>Controlling Dark Souls with a Piano?</h4>
-<p>Why yes I DID suffer from a bout of insanity when I decided to do this! How did you KNOW? Anyway, to business.</p>
-<h5>Why did I decide to do the thing?</h5>
-<p>I thought it might give me an excuse to use my Piano Keyboard more, thereby getting me more practice hitting keys accurately by feel. It did not achieve this but it was a nice thought.</p>
-<h5>Now to the important bit, HOW did I do the thing?</h5>
-<p>
-	So after some googling and a few dead ends I found a <a href="https://www.youtube.com/watch?v=R-pcY65_HDg">youtube video by BenOS</a> where he did exactly what I was looking to do, and gave a brief explanation to boot!
-	So basically, you can just write a simple Python script to do the thing. The script in the video works by using pygame's midi interface to listen for inputs from a midi keyboard. Then pynput's keyboard interface is used to tell the rest of the PC that certain regular keyboard keys have been pressed.
-	Finally the glue that connects the midi inputs to the keypress outputs is basically a table that keeps track of which midi notes are currently being played, and a mapping file that specifies which midi notes should map to which keys.
-</p>
-<p>
-	Of course when I first tried this it didn't work. I could type characters into notepad fine, could even change the controls within the Dark Souls settings menu, but when in game Dark Souls just ignored all my inputs. Great. Not what I wanted.
-	So I went digging and found an alternative to the pynput method of virtually pressing keys. This fancy NEW method uses some kind of DirectX C interface that I don't fully understand but I used example code from <a href="https://pythonprogramming.net/direct-input-game-python-plays-gta-v/">here</a> to get it working.
-	In order to use this new interface the main difference is you have to use proper DirectX key codes rather than just string literals (e.g 0x1E instead of "A"). To make life easier I dug through a DirectX C Header file that defines allllll the keycodes (no idea where I got my hands on THAT, probably google. Also my notes say I used REGEX find/replace to track down the keys. Neat) and copied all the codes for keys I could ever want to use into their own file. I also made sure they all had NAMES so you can map to "DIK_A" instead of needing to remember 0x1E.
-	Finally I updated the text file that describes the mapping of "Note D# four should be treated as Backspace" to use these key names rather than the alphanumeric literals that were being used before.
-	And BAM! It WORKED!
-</p>
-<h5>Results</h5>
-<p>
-	After all this work I got Dark Souls to be controlled through a Midi Piano! Had to modify the keyboard control settings in the settings menu of course, and I promptly forgot what buttons were what which made it very difficult to control...and then I bailed before the first Undead Burg bonfire...
-	I also have a vague recollection that the python script might play the notes that you press on the keyboard? And that there might be some way to turn that off? But it's not in my notes and I did this like 6 months ago. Also old me didn't comment the python script very well. BAD me. Don't do it again.
-	Anyway if you want the script, to mess around with it or to just run it, it's on my Github <a href="https://github.com/Isienmai/MidiPianoToKeyboard/">here</a>. Enjoy! Thanks for reading
-</p>
+<section>
+	<h4>Controlling Dark Souls with a Piano? But Why?</h4>
+	<p>Why yes I DID suffer from a bout of insanity when I decided to do this! How did you KNOW? Anyway, to business.</p>
+	<p>I thought it might give me an excuse to use my Piano Keyboard more, thereby getting me more practice hitting keys accurately by feel. It did not achieve this but it was a nice thought.</p>
+</section>
+<section>
+	<h4>Now to the important bit, HOW did I do the thing?</h4>
+	<p>So after some googling and a few dead ends I found this <a href="https://www.youtube.com/watch?v=R-pcY65_HDg">youtube video by BenOS</a> where he did exactly what I was looking to do, and gave a brief explanation to boot!</p>
+	<p>So basically, you can just write a simple Python script to do the thing. The script in the video works by using pygame's midi interface to listen for inputs from a midi keyboard. Then pynput's keyboard interface is used to tell the rest of the PC that certain regular keyboard keys have been pressed.</p>
+	<p>Finally the glue that connects the midi inputs to the keypress outputs is basically a table that keeps track of which midi notes are currently being played, and a mapping file that specifies which midi notes should map to which keys.</p>
+	<p>Of course when I first tried this it didn't work. I could type characters into notepad fine, could even change the controls within the Dark Souls settings menu, but when in game Dark Souls just ignored all my inputs. Great. Not what I wanted.</p>
+	<p>So I went digging and found an alternative to the pynput method of virtually pressing keys. This fancy NEW method uses some kind of DirectX C interface that I don't fully understand but I used example code from <a href="https://pythonprogramming.net/direct-input-game-python-plays-gta-v/">here</a> to get it working.</p>
+	<p>In order to use this new interface the main difference is you have to use proper DirectX key codes rather than just string literals (e.g 0x1E instead of "A"). To make life easier I dug through a DirectX C Header file that defines allllll the keycodes (no idea where I got my hands on THAT, probably google. Also my notes say I used REGEX find/replace to track down the keys. Neat) and copied all the codes for keys I could ever want to use into their own file. I also made sure they all had NAMES so you can map to "DIK_A" instead of needing to remember 0x1E.</p>
+	<p>Finally I updated the text file that describes the mapping of "Note D# four should be treated as Backspace" to use these key names rather than the alphanumeric literals that were being used before.</p>
+	<p>And BAM! It WORKED!</p>
+</section>
+<section>
+	<h4>Results</h4>
+	<p>
+		After all this work I got Dark Souls to be controlled through a Midi Piano! Had to modify the keyboard control settings in the settings menu of course, and I promptly forgot what buttons were what which made it very difficult to control...and then I bailed before the first Undead Burg bonfire...
+		I also have a vague recollection that the python script might play the notes that you press on the keyboard? And that there might be some way to turn that off? But it's not in my notes and I did this like 6 months ago. Also old me didn't comment the python script very well. BAD me. Don't do it again.
+		Anyway if you want the script, to mess around with it or to just run it, it's on my Github <a href="https://github.com/Isienmai/MidiPianoToKeyboard/">here</a>. Enjoy! Thanks for reading
+	</p>
+</section>
