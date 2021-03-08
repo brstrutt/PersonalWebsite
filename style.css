@@ -28,7 +28,11 @@ main{
   overflow: auto;
   margin-left: 80px;
   text-align: center;
-  padding: 50px;
+  padding: 20px 200px;
+}
+
+section{
+  margin-bottom: 50px;
 }
 
 a.Tag{

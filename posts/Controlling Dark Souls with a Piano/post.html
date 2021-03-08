@@ -5,7 +5,7 @@
 </section>
 <section>
 	<h4>Now to the important bit, HOW did I do the thing?</h4>
-	<p>So after some googling and a few dead ends I found this <a href="https://www.youtube.com/watch?v=R-pcY65_HDg">youtube video by BenOS</a> where he did exactly what I was looking to do, and gave a brief explanation to boot!</p>
+	<p>So after some googling and a few dead ends I found this <a href="https://www.youtube.com/watch?v=R-pcY65_HDg">youtube video by BenOS</a>(no relation) where he did exactly what I was looking to do, and gave a brief explanation to boot!</p>
 	<p>So basically, you can just write a simple Python script to do the thing. The script in the video works by using pygame's midi interface to listen for inputs from a midi keyboard. Then pynput's keyboard interface is used to tell the rest of the PC that certain regular keyboard keys have been pressed.</p>
 	<p>Finally the glue that connects the midi inputs to the keypress outputs is basically a table that keeps track of which midi notes are currently being played, and a mapping file that specifies which midi notes should map to which keys.</p>
 	<p>Of course when I first tried this it didn't work. I could type characters into notepad fine, could even change the controls within the Dark Souls settings menu, but when in game Dark Souls just ignored all my inputs. Great. Not what I wanted.</p>
