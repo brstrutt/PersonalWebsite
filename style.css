@@ -42,6 +42,11 @@ a.Tag:visited{
     color: var(--color-palette-foreground);
 }
 
+main ul{
+  text-align: left;
+  list-style: square;
+}
+
 nav{
     background-color: var(--color-palette-background2);
     color: var(--color-palette-highlight);
