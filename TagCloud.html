@@ -38,7 +38,7 @@
             $countSqrd = pow($count, 2);
 
             $fontSize = $fontMin + $fontMax * ($countSqrd/$maxCountSqrd);
-            echo "<li><a class=Tag style=\"font-size:{$fontSize}px;\" href=\"/TagSearch.html?searchString=$tagName\">$tagName</a></li>";
+            echo "<li><a class=Tag style=\"font-size:{$fontSize}px;\" title=\"{$count} posts have this tag\" href=\"/TagSearch.html?searchString=$tagName\">{$tagName}({$count})</a></li>";
           }
         ?>
       </ul>
