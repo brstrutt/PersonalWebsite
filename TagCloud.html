@@ -29,6 +29,8 @@
           // Print the Category names extracted from the database query with font size varying by how many posts have that Tag
           $fontMin = 11;
           $fontMax = 50;
+          $marginMin = 5;
+          $marginMax = 100;
           $maxCountSqrd = pow($maxCount, 2);
           foreach($rows as $row)
           {
@@ -37,11 +39,14 @@
 
             $countSqrd = pow($count, 2);
 
-            $fontSize = $fontMin + $fontMax * ($countSqrd/$maxCountSqrd);
+            $countRatio = $countSqrd/$maxCountSqrd;
+
+            $fontSize = $fontMin + $fontMax * $countRatio;
+            $marginAmount = $marginMin + $marginMax * $countRatio;
 
             if($count > 0)
             {
-              echo "<li><a class=Tag style=\"font-size:{$fontSize}px;\" title=\"{$count} posts have this tag\" href=\"/TagSearch.html?searchString=$tagName\">{$tagName}</a></li>";
+              echo "<li><a class=Tag style=\"font-size:{$fontSize}px;margin:{$marginAmount}px;\" title=\"{$count} posts have this tag\" href=\"/TagSearch.html?searchString=$tagName\">{$tagName}</a></li>";
             }
           }
         ?>
