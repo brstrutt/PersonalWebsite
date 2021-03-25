@@ -20,13 +20,18 @@ body{
 }
 
 p{
-  margin: 0;
+  text-align: left;
 }
 
 main{
   overflow: auto;
   margin-left: 80px;
   text-align: center;
+  padding: 20px 400px 0px 320px;
+}
+
+section{
+  margin-bottom: 50px;
 }
 
 a.Tag{
@@ -35,6 +40,11 @@ a.Tag{
 
 a.Tag:visited{
     color: var(--color-palette-foreground);
+}
+
+main ul{
+  text-align: left;
+  list-style: square;
 }
 
 nav{
@@ -77,6 +87,7 @@ nav a, a:visited{
 ul.TagCloud{
   display: inline-block;
   list-style: none;
+  padding: 0px;
 }
 
 ul.TagCloud li{

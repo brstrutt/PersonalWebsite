@@ -134,6 +134,7 @@ function BS_InsertPostToDatabase($postsDir, $post)
 	// Insert each Tag that isn't yet inserted
 	foreach($tags as $tag)
 	{
+		$tag = trim($tag);
 		$existingTag = BS_QueryDatabaseParameterised("SELECT * FROM Tags WHERE Name LIKE ?", ["s", [$tag]]);
 		if($existingTag->num_rows < 1)
 		{
