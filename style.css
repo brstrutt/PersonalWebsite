@@ -42,7 +42,7 @@ a.Tag:visited{
     color: var(--color-palette-foreground);
 }
 
-a.Link a.Link:visited {
+a.Link, a.Link:visited {
   color: var(--color-palette-highlight);
 }
 
