@@ -113,6 +113,11 @@ ul.TagSearchResults li{
   margin: 20px;
 }
 
+ul.TagSearchResults h1{
+  text-align: center;
+  font-size: 1em;
+}
+
 ul.TagSearchResults a{
   background-color: var(--color-palette-background2);
   border: 1px solid var(--color-palette-highlight);
