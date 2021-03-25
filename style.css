@@ -34,16 +34,16 @@ section{
   margin-bottom: 50px;
 }
 
-a.Link {
-  color: var(--color-palette-highlight);
-}
-
 a.Tag{
     color: var(--color-palette-highlight);
 }
 
 a.Tag:visited{
     color: var(--color-palette-foreground);
+}
+
+a.Link a.Link:visited {
+  color: var(--color-palette-highlight);
 }
 
 main ul{
