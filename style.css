@@ -34,6 +34,10 @@ section{
   margin-bottom: 50px;
 }
 
+h1.Warning{
+  color: var(--color-palette-highlight);
+}
+
 a.Tag{
     color: var(--color-palette-highlight);
 }
