@@ -34,7 +34,7 @@ section{
   margin-bottom: 50px;
 }
 
-a a:visited{
+a, a:visited{
   color: var(--color-palette-highlight);
 }
 
