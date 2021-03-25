@@ -38,6 +38,10 @@ a:any-link {
   bcolor: var(--color-palette-highlight);
 }
 
+a:-webkit-any-link {
+  color: var(--color-palette-highlight);
+}
+
 a.Tag{
     color: var(--color-palette-highlight);
 }
