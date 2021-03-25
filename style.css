@@ -34,7 +34,11 @@ section{
   margin-bottom: 50px;
 }
 
-a, a:visited{
+a{
+  color: var(--color-palette-highlight);
+}
+
+a:visited{
   color: var(--color-palette-highlight);
 }
 
