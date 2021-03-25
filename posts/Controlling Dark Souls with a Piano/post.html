@@ -1,9 +1,9 @@
 <section>
-	<h4>Controlling Dark Souls with a Piano? But Why?</h4>
+	<h1>Controlling Dark Souls with a Piano? But Why?</h1>
 	<p>So i've had this midi piano keyboard for a while now but I don't use it all that much. This project was intended to give me an excuse to use the keyboard more, with the hope being that it could help make me better at hitting specific notes or maybe even CHORDS. It didn't quite pan out that way as I played for like half an hour and then gave up but it's the thought that counts!</p>
 </section>
 <section>
-	<h4>How did I make it work?</h4>
+	<h1>How did I make it work?</h1>
 	<p>So after some googling and a few dead ends I found this <a href="https://www.youtube.com/watch?v=R-pcY65_HDg">youtube video by BenOS</a>(no relation) where he did exactly what I was looking to do, and gave a brief explanation to boot! The core solution he used is actually pretty simple. You run a single Python script which connects to the Midi piano (or any other Midi device) for input, converts specific notes into Keypresses, and then injects these keypresses into the Operating system. It even reads in a config file specifying which Midi notes should be converted into which Keypresses!</p>
 	<p>The specifics of his implementation are as follows:</p>
 	<ul>
@@ -16,7 +16,7 @@
 	<p>Anyway, after all that I now can inject a keypress of the "A" key by passing DIK_A to a function rather than needing to remember 0x1E. Nice. Finally I just needed to update the config file that maps Midi notes onto key presses, aaaaand time to try Dark Souls again....</p>
 </section>
 <section>
-	<h4>Results</h4>
+	<h1>Results</h1>
 	<p>BAM! It WORKED! I was controlling he chosen undead like....well like someone with a REALLY messed up controller...but I was controlling them nonetheless! Not only that, but with this script I could potentially hook up ANY Midi instrument to play ANY game! (as long as said game doesn't REQUIRE analogue controls...might need to do some further modifications to get THAT working)</p>
 	<p>If you are interested in looking at the code, or just want to download and run it blindly then click <a href="https://github.com/Isienmai/MidiPianoToKeyboard/">here</a>. The config file can be found in the profiles directory. Also on looking through it seems I didn't comment it...like at ALL (BAD Ben)...but hopefully it shouldn't be tooo obtuse.
 	</p>
