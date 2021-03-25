@@ -34,6 +34,10 @@ section{
   margin-bottom: 50px;
 }
 
+a a:visited{
+  color: var(--color-palette-highlight);
+}
+
 a.Tag{
     color: var(--color-palette-highlight);
 }
