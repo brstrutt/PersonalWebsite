@@ -55,6 +55,10 @@ a.Link, a.Link:visited {
   color: var(--color-palette-highlight);
 }
 
+li.NumericList{
+  list-style: decimal;
+}
+
 main ul{
   text-align: left;
   list-style: square;
@@ -135,4 +139,8 @@ ul.TagSearchResults a{
 ul.TagSearchResults a:hover{
   background-color: var(--color-palette-selected-background);
   color: var(--color-palette-highlight);
+}
+
+.PostHalfWidth{
+  width: 49%;
 }
