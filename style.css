@@ -4,6 +4,7 @@
   --color-palette-selected-background:#313131;
   --color-palette-foreground:#BBBBBB;
   --color-palette-highlight:#F0F0F0;
+  --color-palette-warning:#00F0F0;
 }
 
 html{
@@ -34,8 +35,12 @@ section{
   margin-bottom: 50px;
 }
 
-h1.Warning{
+h1, h2, h3, h4, h5, h6{
   color: var(--color-palette-highlight);
+}
+
+h1.Warning{
+  color: var(--color-palette-warning);
 }
 
 a.Tag{
