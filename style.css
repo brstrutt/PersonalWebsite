@@ -141,6 +141,8 @@ ul.TagSearchResults a:hover{
   color: var(--color-palette-highlight);
 }
 
-.PostHalfWidth{
+.post .halfWidth{
   width: 49%;
+  display: inline-table;
+  vertical-align: top;
 }
