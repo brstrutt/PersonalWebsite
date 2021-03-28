@@ -141,6 +141,10 @@ ul.TagSearchResults a:hover{
   color: var(--color-palette-highlight);
 }
 
+img.sameHeightAsText{
+  max-height: 1em;
+}
+
 .post .halfWidth{
   width: 49%;
   display: inline-table;
