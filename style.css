@@ -2,8 +2,9 @@
   --color-palette-background1:#424242;
   --color-palette-background2:#212121;
   --color-palette-selected-background:#313131;
-  --color-palette-foreground:#BBBBBB;
+  --color-palette-foreground:#D0D0D0;
   --color-palette-highlight:#F0F0F0;
+  --color-palette-warning:#D0D000;
 }
 
 html{
@@ -27,11 +28,23 @@ main{
   overflow: auto;
   margin-left: 80px;
   text-align: center;
-  padding: 20px 400px 0px 320px;
+  padding: 20px 10% 0px 10%;
 }
 
 section{
   margin-bottom: 50px;
+}
+
+h1, h2, h3, h4, h5, h6{
+  color: var(--color-palette-highlight);
+}
+
+.post h2{
+  text-align: left;
+}
+
+h1.Warning{
+  color: var(--color-palette-warning);
 }
 
 a.Tag{
@@ -40,6 +53,14 @@ a.Tag{
 
 a.Tag:visited{
     color: var(--color-palette-foreground);
+}
+
+a.Link, a.Link:visited {
+  color: var(--color-palette-highlight);
+}
+
+li.NumericList{
+  list-style: decimal;
 }
 
 main ul{
@@ -105,6 +126,11 @@ ul.TagSearchResults li{
   margin: 20px;
 }
 
+ul.TagSearchResults h1{
+  text-align: center;
+  font-size: 1em;
+}
+
 ul.TagSearchResults a{
   background-color: var(--color-palette-background2);
   border: 1px solid var(--color-palette-highlight);
@@ -117,4 +143,14 @@ ul.TagSearchResults a{
 ul.TagSearchResults a:hover{
   background-color: var(--color-palette-selected-background);
   color: var(--color-palette-highlight);
+}
+
+img.sameHeightAsText{
+  max-height: 1em;
+}
+
+.post .halfWidth{
+  width: 49%;
+  display: inline-table;
+  vertical-align: top;
 }
