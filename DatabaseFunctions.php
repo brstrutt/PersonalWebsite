@@ -1,7 +1,9 @@
 <?php
 function BS_IsDevSite()
 {
-	return $_SERVER['HTTP_HOST'] == 'dev.benstrutt.space';
+	$onHostingerDev = $_SERVER['HTTP_HOST'] == 'dev.benstrutt.space';
+	$onLocalDev = $_SERVER['HTTP_HOST'] == 'undead.merchant';
+	return $onHostingerDev || $onLocalDev;
 }
 
 // Query the website database and return the results
