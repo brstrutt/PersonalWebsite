@@ -62,6 +62,7 @@ function BS_ConnectToDatabase($db_params)
 function BS_ExecuteDatabaseQuery($dbConnection, $query)
 {
 	$query_result = $dbConnection->query($query);
+	if($queryResults == False) echo $dbConnection->error;
 	return $query_result;
 }
 
