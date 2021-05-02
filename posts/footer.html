@@ -3,7 +3,9 @@
     <ul>
       <?php
         include_once($_SERVER['DOCUMENT_ROOT'] . "/DatabaseFunctions.php");
-      	$queryResults = BS_QueryDatabase("SELECT `Tags`.`Name`, `Posts`.`CreationDate` FROM ((`PostTags` INNER JOIN `Posts` ON `Posts`.`ID` = `PostTags`.`PostID`) INNER JOIN `Tags` ON `Tags`.`ID` = `PostTags`.`TagID`) WHERE `Posts`.`Name` LIKE 'Random Maps'");
+        $postName = explode("/", $_SERVER['PHP_SELF'])[2];
+
+      	$queryResults = BS_QueryDatabase("SELECT `Tags`.`Name`, `Posts`.`CreationDate` FROM ((`PostTags` INNER JOIN `Posts` ON `Posts`.`ID` = `PostTags`.`PostID`) INNER JOIN `Tags` ON `Tags`.`ID` = `PostTags`.`TagID`) WHERE `Posts`.`Name` LIKE '$postName'");
 
         if($queryResults)
         {
