@@ -1,18 +1,22 @@
 <footer>
   <div id="PostDates">
     <ul>
-      <li>Date1: DATE</li>
-      <li>Date2: DATE</li>
+      <?php
+        echo "<li>Did it:     DATE</li>";
+        echo "<li>Wrote this: DATE</li>";
+      ?>
     </ul>
   </div>
   <div id="PostTags">
     <ul>
-      <li>Tag1</li>
-      <li>Tag2</li>
-      <li>Tag3</li>
-      <li>Tag4</li>
-      <li>Tag5</li>
-      <li>Tag6</li>
+      <?php
+        $i = 0;
+        while($i < 8)
+        {
+          echo "<li>Tag$i</li>";
+          $i = $i + 1;
+        }
+      ?>
     </ul>
   </div>
 </footer>
