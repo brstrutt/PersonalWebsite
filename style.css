@@ -7,7 +7,7 @@
   --color-palette-highlight:#F0F0F0;
   --color-palette-warning:#D0D000;
   --NavBar-width:80px;
-  --Footer-height:50px;
+  --Footer-height:3em;
 }
 
 /* Force the html element to fill the screen even if there's not enough content to warrant it */
@@ -35,7 +35,7 @@ main{
   overflow: auto;
   margin-left: var(--NavBar-width);
   text-align: center;
-  padding: 20px 10% 0px 10%;
+  padding: 20px 10% var(--Footer-height) 10%;
 }
 
 /* Put a decent gap at the bottom of all sections */
@@ -137,22 +137,24 @@ footer{
 
 /* Set the Post Dates to hang left */
 footer #PostDates{
-  display: inline-flex;
+  display: inline-block;
+  max-width: 200px;
 }
 
 /* Set the Post Dates list to have no style (dont want bullets or numbers or anything) */
 footer #PostDates ul{
   list-style: none;
-  margin: 10px;
   padding-left: 10px;
   padding-right: 10px;
 }
 
 /* Set the Post Tags to hang right */
 footer #PostTags{
-  display: inline-flex;
-  float: right;
+  display: inline-block;
   margin-right: 15px;
+  margin-top: 0.5em;
+  float: right;
+  max-width: 70%;
 }
 
 /* Set the Post Tags list to be single line, comma separated*/
