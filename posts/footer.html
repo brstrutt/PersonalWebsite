@@ -2,19 +2,30 @@
   <div id="PostDates">
     <ul>
       <?php
-        echo "<li>Did it:     DATE</li>";
-        echo "<li>Wrote this: DATE</li>";
+        include_once($_SERVER['DOCUMENT_ROOT'] . "/DatabaseFunctions.php");
+      	$queryResults = BS_QueryDatabase("SELECT `Tags`.`Name`, `Posts`.`CreationDate` FROM ((`PostTags` INNER JOIN `Posts` ON `Posts`.`ID` = `PostTags`.`PostID`) INNER JOIN `Tags` ON `Tags`.`ID` = `PostTags`.`TagID`) WHERE `Posts`.`Name` LIKE 'Random Maps'");
+
+        if($queryResults)
+        {
+          $topResult = $queryResults->fetch_assoc();
+          $creationDate = $topResult["CreationDate"];
+          $EditDate = "NOT SUPPORTED YET CAUSE IM A DUM";
+        }
+        echo "<li>Did it: $creationDate</li>";
+        echo "<li>Wrote this: $EditDate</li>";
       ?>
     </ul>
   </div>
   <div id="PostTags">
     <ul>
       <?php
-        $i = 0;
-        while($i < 8)
+        if($queryResults)
         {
-          echo "<li>Tag$i</li>";
-          $i = $i + 1;
+          while($row = $queryResults->fetch_assoc())
+          {
+            $tagName = $row["Name"];
+            echo "<li><a class=\"Tag\" href=\"/TagSearch.html?searchString=$tagName\">$tagName</a></li>";
+          }
         }
       ?>
     </ul>

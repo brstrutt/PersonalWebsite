@@ -8,5 +8,8 @@ CREATE TABLE `PostTags` ( `PostID` INT NOT NULL , `TagID` INT NOT NULL , PRIMARY
 /// Syntax for Finding all posts name from a tag name
 SELECT `Posts`.Name FROM ((`PostTags` INNER JOIN `Posts` ON `Posts`.`ID` = `PostTags`.`PostID`) INNER JOIN `Tags` ON `Tags`.`ID` = `PostTags`.`TagID`) WHERE `Tags`.`Name` LIKE 'DummyTag'
 
+/// And again but find tags by postname
+SELECT `Posts`.Name FROM ((`PostTags` INNER JOIN `Posts` ON `Posts`.`ID` = `PostTags`.`PostID`) INNER JOIN `Tags` ON `Tags`.`ID` = `PostTags`.`TagID`) WHERE `Posts`.`Name` LIKE 'DummyName'
+
 /// Insert a dummy post into the Posts TABLE
 INSERT INTO `Posts` (`ID`, `Name`, `CreationDate`) VALUES (NULL, 'TESTIG', '2020-12-30')

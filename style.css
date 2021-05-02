@@ -167,7 +167,7 @@ footer #PostTags ul li{
 }
 
 footer #PostTags ul li::after{
-  content: ",";
+  content: ", ";
 }
 
 footer #PostTags ul li:last-child::after{
