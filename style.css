@@ -1,3 +1,4 @@
+/* Setup a colour palette and other variables that should remain consistent across the site */
 :root {
   --color-palette-background1:#424242;
   --color-palette-background2:#212121;
@@ -5,12 +6,16 @@
   --color-palette-foreground:#D0D0D0;
   --color-palette-highlight:#F0F0F0;
   --color-palette-warning:#D0D000;
+  --NavBar-width:80px;
+  --Footer-height:3em;
 }
 
+/* Force the html element to fill the screen even if there's not enough content to warrant it */
 html{
   height: 100%;
 }
 
+/* Set the default styling for the site as a whole */
 body{
   background-color: var(--color-palette-background1);
   font: 100% Helvetica;
@@ -20,33 +25,40 @@ body{
   height: 100%;
 }
 
+/* Make paragraphs align left by default */
 p{
   text-align: left;
 }
 
+/* Setup default styling for page content. Also duck out of the way of the nav bar. */
 main{
   overflow: auto;
-  margin-left: 80px;
+  margin-left: var(--NavBar-width);
   text-align: center;
-  padding: 20px 10% 0px 10%;
+  padding: 20px 10% var(--Footer-height) 10%;
 }
 
+/* Put a decent gap at the bottom of all sections */
 section{
   margin-bottom: 50px;
 }
 
+/* Make all headers be the highlight colour by default */
 h1, h2, h3, h4, h5, h6{
   color: var(--color-palette-highlight);
 }
 
+/* Force subheaders in posts to the left */
 .post h2{
   text-align: left;
 }
 
+/* Add a warning header of a different colour to draw attention */
 h1.Warning{
   color: var(--color-palette-warning);
 }
 
+/* Setup colour of tag hyperlinks */
 a.Tag{
     color: var(--color-palette-highlight);
 }
@@ -55,19 +67,23 @@ a.Tag:visited{
     color: var(--color-palette-foreground);
 }
 
-a.Link, a.Link:visited {
+/* Setup colour of hyperlinks in paragraphs of text */
+a.MidTextLink, a.MidTextLink:visited {
   color: var(--color-palette-highlight);
 }
 
+/* Class for a numbered list */
 li.NumericList{
   list-style: decimal;
 }
 
+/* Default list style within the page content */
 main ul{
   text-align: left;
   list-style: square;
 }
 
+/* Set the nav bar position. size, and colour */
 nav{
     background-color: var(--color-palette-background2);
     color: var(--color-palette-highlight);
@@ -76,10 +92,11 @@ nav{
     position: fixed;
     float: left;
     height: 100%;
-    width: 80px;
+    width: var(--NavBar-width);
     text-align: center;
 }
 
+/* Set the styling of lists within the navbar */
 nav ul{
   position: absolute;
   width: inherit;
@@ -96,15 +113,70 @@ nav ul#ExternalLinks{
   bottom: 0px;
 }
 
+/* Set the styling of navbar list items */
 nav li{
   padding: 5px;
 }
 
+/* Set the colour/appearance of navbar links so they don't change when clicked */
 nav a, a:visited{
   color: inherit;
   text-decoration:none;
 }
 
+/* Set footer to bottom of screen and colours that match the rest of the site*/
+footer{
+  background-color: var(--color-palette-selected-background);
+  color: var(--color-palette-highlight);
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: var(--NavBar-width);
+  height: var(--Footer-height);
+}
+
+/* Set the Post Dates to hang left */
+footer #PostDates{
+  display: inline-block;
+  max-width: 200px;
+}
+
+/* Set the Post Dates list to have no style (dont want bullets or numbers or anything) */
+footer #PostDates ul{
+  list-style: none;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+/* Set the Post Tags to hang right */
+footer #PostTags{
+  display: inline-block;
+  margin-right: 15px;
+  margin-top: 0.5em;
+  float: right;
+  max-width: 70%;
+}
+
+/* Set the Post Tags list to be single line, comma separated*/
+footer #PostTags ul{
+  display: inline;
+  list-style: none;
+  padding: 0;
+}
+
+footer #PostTags ul li{
+  display: inline;
+}
+
+footer #PostTags ul li::after{
+  content: ", ";
+}
+
+footer #PostTags ul li:last-child::after{
+  content: "";
+}
+
+/* Set the overall tag cloud position/size */
 ul.TagCloud{
   display: inline-block;
   list-style: none;
@@ -116,6 +188,7 @@ ul.TagCloud li{
   margin: 20px;
 }
 
+/* Set individual tag search result position and styling */
 ul.TagSearchResults{
   display: inline-block;
   list-style: none;
@@ -131,6 +204,7 @@ ul.TagSearchResults h1{
   font-size: 1em;
 }
 
+/* Set the tag search result link colour and behaviour */
 ul.TagSearchResults a{
   background-color: var(--color-palette-background2);
   border: 1px solid var(--color-palette-highlight);
@@ -145,10 +219,12 @@ ul.TagSearchResults a:hover{
   color: var(--color-palette-highlight);
 }
 
+/* Create class for images that force the image to be the same height as surrounding text. */
 img.sameHeightAsText{
   max-height: 1em;
 }
 
+/* Create class that can be used to force some post content to only fill half the screen */
 .post .halfWidth{
   width: 49%;
   display: inline-table;

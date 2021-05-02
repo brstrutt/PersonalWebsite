@@ -1,0 +1,34 @@
+<footer>
+  <div id="PostDates">
+    <ul>
+      <?php
+        include_once($_SERVER['DOCUMENT_ROOT'] . "/DatabaseFunctions.php");
+        $postName = explode("/", $_SERVER['PHP_SELF'])[2];
+
+      	$queryResults = BS_QueryDatabase("SELECT `Tags`.`Name`, `Posts`.`CreationDate` FROM ((`PostTags` INNER JOIN `Posts` ON `Posts`.`ID` = `PostTags`.`PostID`) INNER JOIN `Tags` ON `Tags`.`ID` = `PostTags`.`TagID`) WHERE `Posts`.`Name` LIKE '$postName'");
+
+        if($queryResults)
+        {
+          $topResult = $queryResults->fetch_assoc();
+          $creationDate = $topResult["CreationDate"];
+          $EditDate = "NOT SUPPORTED YET CAUSE IM A DUM";
+        }
+        echo "<li>Date: $creationDate</li>";
+      ?>
+    </ul>
+  </div>
+  <div id="PostTags">
+    <ul>
+      <?php
+        if($queryResults)
+        {
+          while($row = $queryResults->fetch_assoc())
+          {
+            $tagName = $row["Name"];
+            echo "<li><a class=\"Tag\" href=\"/TagSearch.html?searchString=$tagName\">$tagName</a></li>";
+          }
+        }
+      ?>
+    </ul>
+  </div>
+</footer>
