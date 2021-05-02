@@ -7,6 +7,7 @@
   --color-palette-highlight:#F0F0F0;
   --color-palette-warning:#D0D000;
   --NavBar-width:80px;
+  --Footer-height:50px;
 }
 
 /* Force the html element to fill the screen even if there's not enough content to warrant it */
@@ -131,16 +132,27 @@ footer{
   bottom: 0;
   right: 0;
   left: var(--NavBar-width);
-  max-height: 100px;
+  height: var(--Footer-height);
 }
 
-/* Set the Post Dates and PostTags sections of the post footer to sit next to each other*/
+/* Set the Post Dates to hang left */
 footer #PostDates{
   display: inline-flex;
 }
 
+/* Set the Post Dates list to have no style (dont want bullets or numbers or anything) */
+footer #PostDates ul{
+  list-style: none;
+  margin: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+/* Set the Post Tags to hang right */
 footer #PostTags{
   display: inline-flex;
+  float: right;
+  margin-right: 15px;
 }
 
 /* Set the Post Tags list to be single line, comma separated*/
