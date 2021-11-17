@@ -9,6 +9,7 @@
     <?php include_once($_SERVER['DOCUMENT_ROOT'] . "/NavBar.html"); ?>
     <main>
       <p>Page with buttons for testing php functions that poke the database. NOTE: Buttons should only work on Dev, not Prod.</p>
+      <p>If you've MODIFIED any post's tags or category WIPE THE DATABASE BEFORE PUSHING THE CHANGES!! Else you'll get duplicate problems, be unable to wipe the database, and need to rebuild it from scratch AGAIN</p>
 
       <form method="post">
         <input type="submit" name="ResetDb" id="ResetDb" value="Reset Database" /><br/>
