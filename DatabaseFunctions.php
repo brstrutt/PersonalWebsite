@@ -89,11 +89,11 @@ function BS_ResetDatabaseToCurrentPosts()
 // Wipe database data leaving the structure untouched
 function BS_WipeDatabaseData()
 {
+	BS_QueryDatabase("DELETE FROM `PostTags`");
 	BS_QueryDatabase("DELETE FROM `Posts`");
 	BS_QueryDatabase("ALTER TABLE `Posts` AUTO_INCREMENT = 1");
 	BS_QueryDatabase("DELETE FROM `Tags`");
 	BS_QueryDatabase("ALTER TABLE `Tags` AUTO_INCREMENT = 1");
-	BS_QueryDatabase("TRUNCATE TABLE `PostTags`");
 }
 
 // Scan through the folder structure to find all Posts
