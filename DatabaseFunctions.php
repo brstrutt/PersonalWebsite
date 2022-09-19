@@ -1,7 +1,6 @@
 <?php
 function BS_IsDevSite()
 {
-	$onHostingerDev = $_SERVER['HTTP_HOST'] == 'dev.benstrutt.space';
 	$onLocalDev = $_SERVER['HTTP_HOST'] == 'benstrutt.um';
 	return $onHostingerDev || $onLocalDev;
 }
