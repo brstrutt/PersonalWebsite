@@ -22,6 +22,7 @@
       <?php
         if($queryResults)
         {
+          $queryResults->data_seek(0);
           while($row = $queryResults->fetch_assoc())
           {
             $tagName = $row["Name"];
