@@ -16,6 +16,10 @@ html{
   height: 100%;
 }
 
+*, *::after, *::before{
+  box-sizing: border-box;
+}
+
 /* Set the default styling for the site as a whole */
 body{
   background-color: var(--color-palette-background1);
@@ -200,28 +204,42 @@ ul.TagCloud li{
 
 /* Set individual tag search result position and styling */
 ul.TagSearchResults{
-  display: inline-block;
+  display: grid;
+  width: 100%;
   list-style: none;
+  grid-template-columns: repeat(auto-fill, 300px);
+  grid-auto-rows: 200px;
+  gap: 20px;
 }
 
-ul.TagSearchResults li{
-  display: inherit;
-  margin: 20px;
+ul.TagSearchResults li .imageWrapper{
+  height: 100%;
+}
+
+ul.TagSearchResults li img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 ul.TagSearchResults h1{
   text-align: center;
   font-size: 1em;
+  margin: 0;
 }
 
 /* Set the tag search result link colour and behaviour */
 ul.TagSearchResults a{
+  width: 100%;
+  height: 100%;
   background-color: var(--color-palette-background2);
   border: 1px solid var(--color-palette-highlight);
   border-radius: 4px;
   color: var(--color-palette-foreground);
-  display: inherit;
   padding: 10px;
+
+  display: grid;
+  grid-template-rows: 20% 80%;
 }
 
 ul.TagSearchResults a:hover{
