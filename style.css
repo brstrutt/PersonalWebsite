@@ -5,6 +5,7 @@
   --color-palette-selected-background:#313131;
   --color-palette-foreground:#D0D0D0;
   --color-palette-highlight:#F0F0F0;
+  --color-palette-highlight2: #5ca8ff;
   --color-palette-warning:#D0D000;
   --NavBar-width:80px;
   --Footer-height:3em;
@@ -40,6 +41,8 @@ main{
 
 /* Put a decent gap at the bottom of all sections */
 section{
+  background-color: var(--color-palette-selected-background);
+  padding: 25px;
   margin-bottom: 50px;
 }
 
@@ -53,7 +56,7 @@ section p, section ul{
 
 /* Make all headers be the highlight colour by default */
 h1, h2, h3, h4, h5, h6{
-  color: var(--color-palette-highlight);
+  color: var(--color-palette-highlight2);
 }
 
 /* Force subheaders in posts to the left */
@@ -67,12 +70,8 @@ h1.Warning{
 }
 
 /* Setup colour of tag hyperlinks */
-a.Tag{
-    color: var(--color-palette-highlight);
-}
-
-a.Tag:visited{
-    color: var(--color-palette-foreground);
+a.Tag, a.Tag:visited{
+    color: var(--color-palette-highlight2);
 }
 
 /* Setup colour of hyperlinks in paragraphs of text */
@@ -95,6 +94,7 @@ main ul{
 nav{
     background-color: var(--color-palette-background2);
     color: var(--color-palette-highlight);
+    border-right: 1px solid #7181A6;
     padding: 0;
     margin: 0;
     position: fixed;
@@ -102,6 +102,7 @@ nav{
     height: 100%;
     width: var(--NavBar-width);
     text-align: center;
+    z-index: 2;
 }
 
 /* Set the styling of lists within the navbar */
@@ -134,8 +135,9 @@ nav a, a:visited{
 
 /* Set footer to bottom of screen and colours that match the rest of the site*/
 footer{
-  background-color: var(--color-palette-selected-background);
+  background-color: var(--color-palette-background2);
   color: var(--color-palette-highlight);
+  border-top: 1px solid #7181A6;
   position: fixed;
   bottom: 0;
   right: 0;
@@ -237,4 +239,11 @@ img.sameHeightAsText{
   width: 49%;
   display: inline-table;
   vertical-align: top;
+}
+
+/* Wrapper for when you want a post to have sections displayed in two sections */
+.post .twoColumns{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 40px;
 }
