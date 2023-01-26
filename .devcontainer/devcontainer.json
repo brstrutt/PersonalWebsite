@@ -1,18 +1,19 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
-// README at: https://github.com/devcontainers/templates/tree/main/src/alpine
+// README at: https://github.com/devcontainers/templates/tree/main/src/php-mariadb
 {
-	"name": "Alpine",
-	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/base:alpine-3.17"
+	"name": "PHP & MariaDB",
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "app",
+	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
 
-	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [],
+	// For use with PHP or Apache (e.g.php -S localhost:8080 or apache2ctl start)
+	"forwardPorts": [8080, 3306],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "uname -a",
+	"postCreateCommand": "sudo apt update && sudo apt install vim -y"
 
 	// Configure tool-specific properties.
 	// "customizations": {},
