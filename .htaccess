@@ -9,5 +9,5 @@ RewriteCond %{HTTP_HOST} (www\.)?benstrutt.space
 RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 # DO NOT REMOVE THIS LINE AND THE LINES BELLOW SSL_REDIRECT:benstrutt.space
 
-RemoveHandler.html
+RemoveHandler .html
 AddType application/x-httpd-php .php .html

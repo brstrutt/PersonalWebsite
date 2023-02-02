@@ -8,4 +8,5 @@ To develop using the devcontainer:
 - Install `docker` and `docker-compose-plugin`
 - Open the folder in VSCode
 - Reopen folder in container, using the green button in the bottom left, or the notification in the bottom right
-- You should be able to navigate to the website by going to [localhost:8080](http://localhost:8080/) in a browser
+- A popup should appear in the bottom right with an `open in browser` button, click this.
+    - If this popup does not appear, run `apachectl start` to boot up the server. That should trigger the popup
