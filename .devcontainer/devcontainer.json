@@ -13,7 +13,15 @@
 	"forwardPorts": [8080, 3306],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "sudo apt update && sudo apt install vim -y"
+	"postCreateCommand": "sudo apt update && sudo apt install vim -y",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"mtxr.sqltools",
+				"mtxr.sqltools-driver-mysql"
+			]
+		}
+	}
 
 	// Configure tool-specific properties.
 	// "customizations": {},

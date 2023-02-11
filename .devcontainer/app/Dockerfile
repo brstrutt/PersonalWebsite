@@ -39,5 +39,10 @@ RUN usermod -a -G vscode www-data
 # Enable the rewrite mod so our .htaccess is valid
 RUN ln -s /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled/
 
+# Copy the credentials file into the required location
+#RUN mkdir /var/www/local_dev/private
+#RUN chown www-data:www-data /var/www/local_dev/private
+COPY example_credentials.ini /var/www/local_dev/private/database_credentials.ini
+
 # Start apache automatically when the container starts
 # ENTRYPOINT "/bin/bash apachectl start"

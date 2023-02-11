@@ -3,8 +3,8 @@ version: '3.8'
 services: 
   app:
     build:
-      context: .
-      dockerfile: Dockerfile
+      context: ..
+      dockerfile: .devcontainer/app/Dockerfile
 
     volumes:
       - ../..:/workspaces:cached
@@ -22,7 +22,10 @@ services:
       MYSQL_HOST: db
 
   db:
-    image: mariadb:10.4
+    build:
+      context: ..
+      dockerfile: .devcontainer/db/Dockerfile
+
     restart: unless-stopped
     volumes:
       - mariadb-data:/var/lib/mysql
