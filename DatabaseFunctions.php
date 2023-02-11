@@ -1,8 +1,7 @@
 <?php
 function BS_IsDevSite()
 {
-	$onLocalDev = $_SERVER['HTTP_HOST'] == 'benstrutt.um';
-	return $onHostingerDev || $onLocalDev;
+	return $_SERVER['HTTP_HOST'] != 'benstrutt.space';
 }
 
 // Query the website database and return the results
@@ -63,7 +62,7 @@ function BS_ConnectToDatabase($db_params)
 function BS_ExecuteDatabaseQuery($dbConnection, $query)
 {
 	$query_result = $dbConnection->query($query);
-	if($queryResults == False) echo $dbConnection->error;
+	if($query_result == False) echo $dbConnection->error;
 	return $query_result;
 }
 
