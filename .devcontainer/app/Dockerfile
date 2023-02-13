@@ -8,15 +8,10 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 # Install php-mysql driver
 RUN docker-php-ext-install mysqli pdo pdo_mysql
 
-# [Optional] Uncomment this section to install additional OS packages.
-# RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-#     && apt-get -y install --no-install-recommends <your-package-list-here>
-
 # [Optional] Uncomment this line to install global node packages.
 # RUN su vscode -c "source /usr/local/share/nvm/nvm.sh && npm install -g <your-package-here>" 2>&1
 
 # Setup the dev workspace to be hosted
-
 RUN mkdir /var/www/local_dev
 RUN ln -sT /workspaces/PersonalWebsite/ /var/www/local_dev/public_html
 
@@ -39,9 +34,10 @@ RUN usermod -a -G vscode www-data
 # Enable the rewrite mod so our .htaccess is valid
 RUN ln -s /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled/
 
+# Remove the apache Alias mod (it hides the 'icons' directory so the sidebar icons can't be found)
+RUN rm /etc/apache2/mods-enabled/alias.*
+
 # Copy the credentials file into the required location
-#RUN mkdir /var/www/local_dev/private
-#RUN chown www-data:www-data /var/www/local_dev/private
 COPY example_credentials.ini /var/www/local_dev/private/database_credentials.ini
 
 # Start apache automatically when the container starts
