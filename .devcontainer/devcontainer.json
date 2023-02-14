@@ -10,7 +10,7 @@
 	// "features": {},
 
 	// For use with PHP or Apache (e.g.php -S localhost:8080 or apache2ctl start)
-	"forwardPorts": [8080, 3306],
+	"forwardPorts": [8080, 80, 3306],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
 	"postCreateCommand": "sudo apt update && sudo apt install vim -y",
@@ -21,7 +21,9 @@
 				"mtxr.sqltools-driver-mysql"
 			]
 		}
-	}
+	},
+
+	"postStartCommand": "apachectl start"
 
 	// Configure tool-specific properties.
 	// "customizations": {},

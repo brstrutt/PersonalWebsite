@@ -15,14 +15,18 @@ RUN docker-php-ext-install mysqli pdo pdo_mysql
 RUN mkdir /var/www/local_dev
 RUN ln -sT /workspaces/PersonalWebsite/ /var/www/local_dev/public_html
 
-RUN echo "<VirtualHost *:80>" > /etc/apache2/sites-available/000-default.conf
+RUN echo "<VirtualHost *:80 *:8080>" > /etc/apache2/sites-available/000-default.conf
 RUN echo "  DocumentRoot /var/www/local_dev/public_html" >> /etc/apache2/sites-available/000-default.conf
 
 # Put the error logs somewhere we can see them
-# RUN echo "  ErrorLog /local_dev_error.log" >> /etc/apache2/sites-available/000-default.conf
-# RUN touch /local_dev_error.log
-# RUN chown www-data:www-data /local_dev_error.log
-# RUN chmod 777 /local_dev_error.log
+RUN echo "  ErrorLog /local_dev_error.log" >> /etc/apache2/sites-available/000-default.conf
+RUN echo "  CustomLog /local_dev_access.log combined" >> /etc/apache2/sites-available/000-default.conf
+RUN touch /local_dev_error.log
+RUN touch /local_dev_access.log
+RUN chown www-data:www-data /local_dev_error.log
+RUN chown www-data:www-data /local_dev_access.log
+RUN chmod 777 /local_dev_error.log
+RUN chmod 777 /local_dev_access.log
 
 RUN echo "</VirtualHost>" >> /etc/apache2/sites-available/000-default.conf
 
@@ -39,6 +43,3 @@ RUN rm /etc/apache2/mods-enabled/alias.*
 
 # Copy the credentials file into the required location
 COPY example_credentials.ini /var/www/local_dev/private/database_credentials.ini
-
-# Start apache automatically when the container starts
-# ENTRYPOINT "/bin/bash apachectl start"
