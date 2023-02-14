@@ -34,6 +34,13 @@
           $maxCountSqrd = pow($maxCount, 2);
           foreach($rows as $row)
           {
+            if(
+              !array_key_exists("Name", $row) || 
+              !array_key_exists("COUNT(*)", $row))
+            {
+              continue;
+            }
+
             $tagName = $row["Name"];
             $count = $row["COUNT(*)"];
 
