@@ -8,5 +8,9 @@ To develop using the devcontainer:
 - Install `docker` and `docker-compose-plugin`
 - Open the folder in VSCode
 - Reopen folder in container, using the green button in the bottom left, or the notification in the bottom right
-- A popup should appear in the bottom right with an `open in browser` button, click this.
-    - If this popup does not appear, run `apachectl start` to boot up the server. That should trigger the popup
+
+## Running the site locally
+- Within the devcontainer run `apachectl start`
+- a Popup should appear with a link to the available site page
+- Open the Debug Page and click `Insert Posts To Database`
+- return to the homepage
