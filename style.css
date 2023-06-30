@@ -132,7 +132,7 @@ nav li{
 }
 
 /* Set the colour/appearance of navbar links so they don't change when clicked */
-nav a, a:visited{
+nav a, nav a:visited{
   color: inherit;
   text-decoration:none;
 }
