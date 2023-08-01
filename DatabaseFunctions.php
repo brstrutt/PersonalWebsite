@@ -1,7 +1,10 @@
 <?php
 function BS_IsDevSite()
 {
-	return $_SERVER['HTTP_HOST'] != 'benstrutt.space';
+	return $_SERVER['HTTP_HOST'] != 'benstrutt.space' &&
+		$_SERVER['HTTP_HOST'] != 'www.benstrutt.space' && 
+		$_SERVER['HTTP_HOST'] != '0800ben.com' &&
+		$_SERVER['HTTP_HOST'] != 'www.0800ben.com';
 }
 
 // Query the website database and return the results
